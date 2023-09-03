@@ -20,6 +20,7 @@ in {
       gnome.gnome-tweaks
       gnome.gnome-keyring
       gh
+      git
       unstable.vscode
       # other packages
     ];
