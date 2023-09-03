@@ -27,10 +27,12 @@ in {
       micro
       neofetch
       onlyoffice-bin
+      # pypi2nix /*currently broken error*/
+      # python3
       unstable.obsidian
+      # unstable.python310Packages.pip
       unstable.vscode
       unstable.zoom-us
-      ventoy-full
     ];
   };
 }
