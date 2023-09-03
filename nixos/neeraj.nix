@@ -14,13 +14,13 @@ in {
     description = "Neeraj";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       brave
-      micro
-      gnome.gnome-tweaks
-      gnome.gnome-keyring
+      firefox
       gh
       git
+      gnome.gnome-keyring
+      gnome.gnome-tweaks
+      micro
       unstable.vscode
       # other packages
     ];
