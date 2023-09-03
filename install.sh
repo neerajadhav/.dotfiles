@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Define ANSI color codes
+YELLOW="\e[93m"
+GREEN="\e[32m"
+RED="\e[91m"
+RESET="\e[0m"
+
 # Define global variables
 HOME_DIR="$HOME"
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -17,16 +23,16 @@ set_dotProfile() {
     if [ -f "$PROFILE_FILE" ]; then
         # Create a backup of .profile in the backup directory
         cp "$PROFILE_FILE" "$BACKUP_DIR/.profile_$(date +'%Y%m%d%H%M%S').bak"
-        echo "Backup of .profile created in the backup directory."
+        echo -e "${YELLOW}Backup of .profile created in the backup directory.${RESET}"
         rm "$PROFILE_FILE"
-        echo "Existing .profile removed from the home directory."
+        echo -e "${RED}Existing .profile removed from the home directory.${RESET}"
     fi
 
     # Create a symbolic link to .profile in the dotfiles directory
     ln -s "$DOTPROFILE_FILE" "$PROFILE_FILE"
-    echo ".profile symlink created in the home directory."
+    echo -e "${GREEN}Created a symbolic link to .profile in the home directory.${RESET}"
 
-    echo "DotProfile setup complete."
+    echo -e "DotProfile setup complete."
 }
 
 # Function to apply Nix configuration
@@ -41,11 +47,11 @@ apply_nix_configuration() {
     # Backup existing Nix configuration files to the backup directory
     for file in "$NIXOS_DIR"/*; do
         if [ -f "$file" ]; then
-            echo "Please enter your password to remove existing $(basename "$file") from $NIXOS_DIR:"
+            echo -e "Backing up $(basename "$file") in $NIXOS_DIR..."
             cp "$file" "$BACKUP_DIR/nixos/$(basename "$file")_$(date +'%Y%m%d%H%M%S').bak"
-            echo "$(basename "$file") - Backup created"
+            echo -e "${YELLOW}Backup Created:${RESET} $(basename "$file") to $BACKUP_DIR/nixos."
             sudo rm "$file"
-            echo "$(basename "$file") removed from $NIXOS_DIR."
+            echo -e "${RED}Removed file:${RESET} $(basename "$file") from $NIXOS_DIR."
         fi
     done
 
@@ -53,11 +59,11 @@ apply_nix_configuration() {
     for file in "$DOTFILES_NIXOS_DIR"/*; do
         if [ -f "$file" ]; then
             sudo ln -s "$file" "$NIXOS_DIR/$(basename "$file")"
-            echo "Symlink for $(basename "$file") created in $NIXOS_DIR."
+            echo -e "${GREEN}Symlink Created:${RESET} For $(basename "$file") in $NIXOS_DIR."
         fi
     done
 
-    echo "Nix configuration applied successfully."
+    echo -e "Nix configuration applied successfully."
 }
 
 # Menu function
@@ -86,7 +92,7 @@ while true; do
         exit 0
         ;;
     *)
-        echo "Invalid choice. Please enter a valid option."
+        echo -e "${RED}Invalid choice. Please enter a valid option.${RESET}"
         ;;
     esac
     read -n 1 -s -r -p "Press any key to continue..."
