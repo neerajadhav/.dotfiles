@@ -22,7 +22,7 @@ This script helps you manage your dotfiles by setting up a symbolic link for the
    git clone https://github.com/neerajadhav/.dotfiles.git ~/.dotfiles
    ```
 
-2. Make sure you have the script in your PATH or navigate to the directory containing the script.
+2. Make sure to navigate to the directory containing the script.
 
 3. Run the script using:
 

@@ -10,9 +10,15 @@ RESET="\e[0m"
 HOME_DIR="$HOME"
 DOTFILES_DIR="$HOME/.dotfiles"
 BACKUP_DIR="./backup"
+LOG_FILE="function_log.txt"
 
 # Function to set the dotProfile file
 set_dotProfile() {
+    if [ -f "$LOG_FILE" ] && grep -q "set_dotProfile" "$LOG_FILE"; then
+        echo -e "${RED}set_dotProfile has already been executed.${RESET}"
+        return
+    fi
+
     PROFILE_FILE="$HOME/.profile"
     DOTPROFILE_FILE="$DOTFILES_DIR/.profile"
 
@@ -32,11 +38,17 @@ set_dotProfile() {
     ln -s "$DOTPROFILE_FILE" "$PROFILE_FILE"
     echo -e "${GREEN}Created a symbolic link to .profile in the home directory.${RESET}"
 
-    echo -e "DotProfile setup complete."
+    echo "set_dotProfile $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
+    echo -e "${GREEN}DotProfile setup complete.${RESET}"
 }
 
 # Function to apply Nix configuration
 apply_nix_configuration() {
+    if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
+        echo -e "${RED}apply_nix_configuration has already been executed.${RESET}"
+        return
+    fi
+
     # Define paths
     NIXOS_DIR="/etc/nixos"
     DOTFILES_NIXOS_DIR="$DOTFILES_DIR/nixos"
@@ -63,7 +75,8 @@ apply_nix_configuration() {
         fi
     done
 
-    echo -e "Nix configuration applied successfully."
+    echo "apply_nix_configuration $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
+    echo -e "${GREEN}Nix configuration applied successfully.${RESET}"
 }
 
 # Menu function
