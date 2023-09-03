@@ -8,11 +8,6 @@
     description = "Neeraj";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      flatpak
-        # This is the list of flatpak apps to be installed from flathub
-        /*
-        vscode 
-        */
       firefox
       brave
       micro

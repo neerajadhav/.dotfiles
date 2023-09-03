@@ -57,7 +57,7 @@
   };
 
   # Enable Flatpak support
-  services.flatpak.enable = true;
+  # services.flatpak.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
