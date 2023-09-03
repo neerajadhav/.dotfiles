@@ -17,6 +17,7 @@ in {
       cpeditor
       brave
       dropbox
+      dropbox-cli
       firefox
       gh
       git
@@ -29,8 +30,7 @@ in {
       unstable.obsidian
       unstable.vscode
       unstable.zoom-us
-      ventoy
-      # other packages
+      ventoy-full
     ];
   };
 }
