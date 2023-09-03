@@ -13,6 +13,7 @@
       micro
       gnome.gnome-tweaks
       gnome.gnome-keyring
+      gh
       # other packages
     ];
   };
