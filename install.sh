@@ -38,7 +38,7 @@ set_dotProfile() {
     ln -s "$DOTPROFILE_FILE" "$PROFILE_FILE"
     echo -e "${GREEN}Created a symbolic link to .profile in the home directory.${RESET}"
 
-    echo "set_dotProfile $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
+    echo "set_dotProfile $(date +'%Y%m%d%H%M%S')" >>"$LOG_FILE"
     echo -e "${GREEN}DotProfile setup complete.${RESET}"
 }
 
@@ -75,16 +75,29 @@ apply_nix_configuration() {
         fi
     done
 
-    echo "apply_nix_configuration $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
+    echo "apply_nix_configuration $(date +'%Y%m%d%H%M%S')" >>"$LOG_FILE"
     echo -e "${GREEN}Nix configuration applied successfully.${RESET}"
 }
 
-# Menu function
+# Menu function with tick marks
 show_menu() {
     clear
     echo "=== DotFiles Menu ==="
-    echo "1. Set dotProfile"
-    echo "2. Apply Nix configuration"
+
+    # Check if set_dotProfile has been executed and display a tick mark accordingly
+    if [ -f "$LOG_FILE" ] && grep -q "set_dotProfile" "$LOG_FILE"; then
+        echo -e "1. [${GREEN}✓${RESET}] Set dotProfile"
+    else
+        echo -e "1. [${RED}✗${RESET}] Set dotProfile"
+    fi
+
+    # Check if apply_nix_configuration has been executed and display a tick mark accordingly
+    if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
+        echo -e "2. [${GREEN}✓${RESET}] Apply Nix configuration"
+    else
+        echo -e "2. [${RED}✗${RESET}] Apply Nix configuration"
+    fi
+
     echo "3. Exit"
     echo "======================"
 }
