@@ -14,14 +14,22 @@ in {
     description = "Neeraj";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      cpeditor
       brave
+      dropbox
       firefox
       gh
       git
       gnome.gnome-keyring
       gnome.gnome-tweaks
+      htop
       micro
+      neofetch
+      onlyoffice-bin
+      unstable.obsidian
       unstable.vscode
+      unstable.zoom-us
+      ventoy
       # other packages
     ];
   };
