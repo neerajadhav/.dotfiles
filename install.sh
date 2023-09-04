@@ -20,7 +20,7 @@ set_dotProfile() {
     fi
 
     PROFILE_FILE="$HOME/.profile"
-    DOTPROFILE_FILE="$DOTFILES_DIR/.profile"
+    DOTPROFILE_FILE="$DOTFILES_DIR/src/.profile"
 
     # Create the backup directory if it doesn't exist
     mkdir -p "$BACKUP_DIR"
@@ -51,7 +51,7 @@ apply_nix_configuration() {
 
     # Define paths
     NIXOS_DIR="/etc/nixos"
-    DOTFILES_NIXOS_DIR="$DOTFILES_DIR/nixos"
+    DOTFILES_NIXOS_DIR="$DOTFILES_DIR/src/nixos"
 
     # Create the backup directory if it doesn't exist
     mkdir -p "$BACKUP_DIR/nixos"
