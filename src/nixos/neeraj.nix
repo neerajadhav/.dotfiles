@@ -16,8 +16,6 @@ in {
     packages = with pkgs; [
       # cpeditor # not showing icon in overview TODO: find solution
       brave
-      # dropbox # (Not working - TODO: find a solution)
-      # dropbox-cli
       firefox
       gh
       git
@@ -28,6 +26,7 @@ in {
       neofetch
       onlyoffice-bin
       python3
+      unstable.maestral # open-source dropbox client
       unstable.obsidian
       unstable.virtualenv
       unstable.vscode
