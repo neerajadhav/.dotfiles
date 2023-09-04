@@ -59,6 +59,11 @@ Refer to readme.md file to know how to use this file.
     xkbVariant = "";
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   # KDE specific applications to exclude from installation
   environment.plasma5.excludePackages = with pkgs.libsForQt5; [
     elisa

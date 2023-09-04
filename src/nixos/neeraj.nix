@@ -9,12 +9,18 @@ let
   */
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   
-  # qtile specific packages
+  # Qtile specific packages
   qtileApps = with pkgs; [
     cowsay
   ];
 
-  # unstable apps here
+  # Gnome specific packages
+  gnomeApps = with pkgs; [
+    gnome.gnome-tweaks
+    gnome.gnome-keyring
+  ];
+
+  # Unstable apps
   unstableApps = with pkgs; with unstable; [
     maestral
     obsidian
@@ -29,8 +35,6 @@ let
     firefox
     gh
     git
-    gnome.gnome-keyring
-    gnome.gnome-tweaks
     htop
     micro
     neofetch
