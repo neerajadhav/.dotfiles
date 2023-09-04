@@ -72,6 +72,47 @@ apply_nix_configuration() {
     fi
 }
 
+apply_qtile_configuration() {
+    if [ -f "$LOG_FILE" ] && grep -q "apply_qtile_configuration" "$LOG_FILE"; then
+        echo -e "${RED}apply_qtile_configuration has already been executed.${RESET}"
+        return
+    fi
+
+    QTILE_CONFIG_DIR="$HOME/.config/qtile"
+    DOTFILES_QTILE_DIR="$DOTFILES_DIR/src/qtile"
+
+    if [ -d "$QTILE_CONFIG_DIR" ]; then
+        if [ "$(ls -A "$QTILE_CONFIG_DIR")" ]; then
+            mkdir -p "$BACKUP_DIR/qtile"
+        fi
+        for file in "$QTILE_CONFIG_DIR"/*; do
+            if [ -f "$file" ]; then
+                echo -e "Backing up $(basename "$file") in $QTILE_CONFIG_DIR..."
+                cp "$file" "$BACKUP_DIR/qtile/$(basename "$file")_$(date +'%Y%m%d%H%M%S').bak"
+                echo -e "${YELLOW}Backup Created:${RESET} $(basename "$file") to $BACKUP_DIR/qtile."
+                rm "$file"
+                echo -e "${RED}Removed file:${RESET} $(basename "$file") from $QTILE_CONFIG_DIR."
+            fi
+        done
+
+        for file in "$DOTFILES_QTILE_DIR"/*; do
+            if [ -f "$file" ]; then
+                ln -s "$file" "$QTILE_CONFIG_DIR/$(basename "$file")"
+                echo -e "${GREEN}Symlink Created:${RESET} For $(basename "$file") in $QTILE_CONFIG_DIR."
+            fi
+        done
+
+        echo "apply_qtile_configuration $(date +'%Y%m%d%H%M%S')" >>"$LOG_FILE"
+        echo -e "${GREEN}Qtile configuration applied successfully.${RESET}"
+
+        # Edit the menu to show that Qtile configuration is applied
+        sed -i '/2. \[.*\] Apply Nix configuration/c\2. \['"${GREEN}✓${RESET}"'\] Apply Nix configuration '"${YELLOW}(needs sudo access)${RESET}"'' "$0"
+3. [e[32m✓e[0m] Apply Qtile configuration
+    else
+        echo -e "${RED}${QTILE_CONFIG_DIR} does not exist.${RESET} Skipping the backup and symlink creation."
+    fi
+}
+
 show_menu() {
     clear
     echo -e "======================\n"
@@ -84,12 +125,18 @@ show_menu() {
     fi
 
     if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
-        echo -e "2. [${GREEN}✓${RESET}] Apply Nix configuration"
+2. [e[32m✓e[0m] Apply Nix configuration e[93m(needs sudo access)e[0m
     else
-        echo -e "2. [${RED}✗${RESET}] Apply Nix configuration ${YELLOW}(needs sudo access)${RESET}"
+2. [e[32m✓e[0m] Apply Nix configuration e[93m(needs sudo access)e[0m
     fi
 
-    echo "3. Exit"
+    if [ -f "$LOG_FILE" ] && grep -q "apply_qtile_configuration" "$LOG_FILE"; then
+        echo -e "3. [${GREEN}✓${RESET}] Apply Qtile configuration"
+    else
+        echo -e "3. [${RED}✗${RESET}] Apply Qtile configuration"
+    fi
+
+    echo "4. Exit"
     echo -e "\n======================\n"
 }
 
@@ -104,6 +151,9 @@ while true; do
         apply_nix_configuration
         ;;
     3)
+        apply_qtile_configuration
+        ;;
+    4)
         echo "Exiting the script."
         exit 0
         ;;
