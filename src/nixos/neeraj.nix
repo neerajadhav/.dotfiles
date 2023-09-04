@@ -17,7 +17,6 @@ let
   # Gnome specific packages
   gnomeApps = with pkgs; [
     gnome.gnome-tweaks
-    gnome.gnome-keyring
   ];
 
   # Unstable apps
@@ -31,11 +30,14 @@ let
 
   # Apps to be installed irrespective of desktop env
   commonStableApps = with pkgs; [
+    alacritty
     brave
     firefox
     gh
     git
+    gnome.gnome-keyring
     htop
+    libsecret
     micro
     neofetch
     onlyoffice-bin
