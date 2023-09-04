@@ -11,6 +11,8 @@ let
   
   # Qtile specific packages
   qtileApps = with pkgs; [
+    dunst
+    libnotify
     nitrogen
     xfce.thunar
   ];

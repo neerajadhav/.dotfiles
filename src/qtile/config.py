@@ -58,7 +58,7 @@ def init_colors():
 @hook.subscribe.startup_once
 def startup():
     home = os.path.expanduser("~")
-    subprocess.Popen(["./autostart.sh"])
+    subprocess.Popen([home + "/.config/qtile/autostart.sh"])
 
 
 colors = init_colors()

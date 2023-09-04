@@ -1,2 +1,2 @@
 #!/bin/sh
-nitrogen --restore &
+nitrogen --restore
