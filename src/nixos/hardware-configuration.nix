@@ -22,6 +22,12 @@
     { device = "/dev/disk/by-uuid/E7E8-02D5";
       fsType = "vfat";
     };
+  
+  fileSystems."/home/data" = 
+    {
+      device = "/dev/nvme0n1p3";
+      fsType = "ext4"; # Replace with your actual file system type
+    };
 
   swapDevices = [ ];
 

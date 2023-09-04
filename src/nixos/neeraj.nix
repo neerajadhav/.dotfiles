@@ -11,7 +11,8 @@ let
   
   # Qtile specific packages
   qtileApps = with pkgs; [
-    cowsay
+    nitrogen
+    xfce.thunar
   ];
 
   # Gnome specific packages
