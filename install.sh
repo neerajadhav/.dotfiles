@@ -82,7 +82,8 @@ apply_nix_configuration() {
 # Menu function with tick marks
 show_menu() {
     clear
-    echo "=== DotFiles Menu ==="
+    echo -e "======================\n"
+    echo -e "DotFiles Menu\n"
 
     # Check if set_dotProfile has been executed and display a tick mark accordingly
     if [ -f "$LOG_FILE" ] && grep -q "set_dotProfile" "$LOG_FILE"; then
@@ -95,11 +96,11 @@ show_menu() {
     if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
         echo -e "2. [${GREEN}✓${RESET}] Apply Nix configuration"
     else
-        echo -e "2. [${RED}✗${RESET}] Apply Nix configuration"
+        echo -e "2. [${RED}✗${RESET}] Apply Nix configuration ${YELLOW}(needs sudo access)${RESET}"
     fi
 
     echo "3. Exit"
-    echo "======================"
+    echo -e "\n======================\n"
 }
 
 # Main loop
