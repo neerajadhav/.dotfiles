@@ -16,7 +16,7 @@ in {
     packages = with pkgs; [
       cpeditor
       brave
-      dropbox
+      dropbox # not working TODO: find solution
       dropbox-cli
       firefox
       gh
@@ -27,10 +27,9 @@ in {
       micro
       neofetch
       onlyoffice-bin
-      # pypi2nix /*currently broken error*/
-      # python3
+      python3 # for latest stable python
       unstable.obsidian
-      # unstable.python310Packages.pip
+      unstable.virtualenv # very important for python
       unstable.vscode
       unstable.zoom-us
     ];
