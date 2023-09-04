@@ -50,7 +50,8 @@ Refer to readme.md file to know how to use this file.
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.qtile.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
