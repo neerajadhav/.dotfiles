@@ -105,9 +105,6 @@ apply_qtile_configuration() {
         echo "apply_qtile_configuration $(date +'%Y%m%d%H%M%S')" >>"$LOG_FILE"
         echo -e "${GREEN}Qtile configuration applied successfully.${RESET}"
 
-        # Edit the menu to show that Qtile configuration is applied
-        sed -i '/2. \[.*\] Apply Nix configuration/c\2. \['"${GREEN}✓${RESET}"'\] Apply Nix configuration '"${YELLOW}(needs sudo access)${RESET}"'' "$0"
-3. [e[32m✓e[0m] Apply Qtile configuration
     else
         echo -e "${RED}${QTILE_CONFIG_DIR} does not exist.${RESET} Skipping the backup and symlink creation."
     fi
@@ -125,9 +122,9 @@ show_menu() {
     fi
 
     if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
-2. [e[32m✓e[0m] Apply Nix configuration e[93m(needs sudo access)e[0m
+        echo -e "1. [${GREEN}✓${RESET}] Apply Nix configuration"
     else
-2. [e[32m✓e[0m] Apply Nix configuration e[93m(needs sudo access)e[0m
+        echo -e "1. [${GREEN}✓${RESET}] Apply Nix configuration"
     fi
 
     if [ -f "$LOG_FILE" ] && grep -q "apply_qtile_configuration" "$LOG_FILE"; then
