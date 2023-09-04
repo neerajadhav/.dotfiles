@@ -40,9 +40,11 @@ let
     htop
     libsecret
     micro
+    motrix
     neofetch
     onlyoffice-bin
     python3
+    ventoy-full
   ];
 
   appendApps = apps: qtileApps ++ unstableApps ++  commonStableApps ++ apps;
