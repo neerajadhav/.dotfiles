@@ -14,10 +14,10 @@ in {
     description = "Neeraj";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      cpeditor
+      # cpeditor # not showing icon in overview TODO: find solution
       brave
-      dropbox # not working TODO: find solution
-      dropbox-cli
+      # dropbox # not working TODO: find solution
+      # dropbox-cli
       firefox
       gh
       git
