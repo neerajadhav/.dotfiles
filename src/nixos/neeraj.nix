@@ -11,10 +11,13 @@ let
   
   # Qtile specific packages
   qtileApps = with pkgs; [
+    alacritty
+    dmenu
     dunst
     libnotify
     nitrogen
     xfce.thunar
+    xorg.xbacklight
   ];
 
   # Gnome specific packages
@@ -33,7 +36,6 @@ let
 
   # Apps to be installed irrespective of desktop env
   commonStableApps = with pkgs; [
-    alacritty
     brave
     firefox
     gh

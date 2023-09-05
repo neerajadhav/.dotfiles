@@ -29,7 +29,7 @@ Refer to readme.md file to know how to use this file.
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = "en_US.UTF8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -41,6 +41,7 @@ Refer to readme.md file to know how to use this file.
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
+    LC_CTYPE="en_US.utf8";
   };
 
   # Enable the X11 windowing system.
