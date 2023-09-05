@@ -306,6 +306,12 @@ screens = [
                 separator,
                 battery_widget,
                 separator,
+                widget.Backlight(
+                    backlight_name="amdgpu_bl1",
+                    foreground=colors[2],
+                    background=colors[1],
+                    fmt="Lit: {} ",
+                ),
                 widget.Clock(
                     format="%d-%m-%Y %a %I:%M %p",
                     foreground=colors[8],

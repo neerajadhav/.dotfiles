@@ -17,7 +17,6 @@ let
     libnotify
     nitrogen
     xfce.thunar
-    xorg.xbacklight
   ];
 
   # Gnome specific packages
