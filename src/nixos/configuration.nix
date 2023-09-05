@@ -41,7 +41,7 @@ Refer to readme.md file to know how to use this file.
     LC_PAPER = "en_IN";
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
-    LC_CTYPE="en_US.utf8";
+    LC_CTYPE="en_US.utf8"; # required by dmenu
   };
 
   # Enable the X11 windowing system.
