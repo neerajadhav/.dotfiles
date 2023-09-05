@@ -26,9 +26,6 @@ let
 
   # Unstable apps
   unstableApps = with pkgs; with unstable; [
-    maestral # open source dropbox client
-    maestral-gui
-    nodejs_20
     obsidian
     virtualenv
     vscode

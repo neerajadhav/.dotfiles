@@ -44,12 +44,21 @@ Refer to readme.md file to know how to use this file.
     LC_CTYPE="en_US.utf8"; # required by dmenu
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the Qtile window manager.
+  services.xserver = {
+    enable = true;   
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    displayManager.defaultSession = "xfce+qtile";
+    windowManager.qtile.enable = true;
+  };
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.windowManager.qtile.enable = true;
 
   # Enable gnome-keyring
   services.gnome.gnome-keyring.enable = true;
