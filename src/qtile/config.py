@@ -152,39 +152,8 @@ widget_defaults = dict(
     fontsize=12,
     padding=3,
 )
-extension_defaults = widget_defaults.copy()
 
-# Define the bar
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Sep(
-                    linewidth=0,
-                    padding=6,
-                    foreground=colors[2],
-                    background=colors[0],
-                ),
-                widget.Image(
-                    filename="~/.config/qtile/garuda.png",
-                    scale="False",
-                    margin=6,
-                    foreground=colors[2],
-                    background=colors[0],
-                    mouse_callbacks={"Button1": lazy.spawn("dmenu_run")},
-                ),
-                widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[2], background=colors[0]
-                ),
-                widget.GroupBox(),
-                widget.WindowName(),
-                widget.Volume(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-            ],
-            24,
-        ),
-    ),
-]
+extension_defaults = widget_defaults.copy()
 
 
 # Define autostart applications
@@ -241,6 +210,8 @@ volume_widget = widget.Volume(
     emoji=False,
     update_interval=0.1,
     fmt="Vol: {}",
+    foreground=colors[9],
+    background=colors[0],
 )
 
 battery_widget = widget.Battery(
@@ -251,6 +222,15 @@ battery_widget = widget.Battery(
     discharge_char="",
     update_delay=0.1,
     format="Bat: {char}{percent:2.0%}",
+    foreground=colors[4],
+    background=colors[0],
+)
+
+separator = widget.Sep(
+    linewidth=0,
+    padding=6,
+    foreground=colors[2],
+    background=colors[0],
 )
 
 # Define the bar
@@ -258,11 +238,75 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
-                widget.WindowName(),
+                separator,
+                widget.Image(
+                    filename="~/.config/qtile/garuda.png",
+                    scale="False",
+                    margin=6,
+                    foreground=colors[2],
+                    background=colors[0],
+                    mouse_callbacks={"Button1": lazy.spawn("dmenu_run")},
+                ),
+                separator,
+                widget.GroupBox(
+                    font="Ubuntu Bold",
+                    fontsize=9,
+                    margin_y=3,
+                    margin_x=0,
+                    padding_y=5,
+                    padding_x=3,
+                    borderwidth=3,
+                    active=colors[2],
+                    inactive=colors[7],
+                    rounded=False,
+                    highlight_color=colors[1],
+                    highlight_method="line",
+                    this_current_screen_border=colors[6],
+                    this_screen_border=colors[4],
+                    other_current_screen_border=colors[6],
+                    other_screen_border=colors[4],
+                    foreground=colors[2],
+                    background=colors[0],
+                ),
+                widget.TextBox(
+                    text="|",
+                    font="Ubuntu Mono",
+                    background=colors[0],
+                    foreground="474747",
+                    padding=2,
+                    fontsize=14,
+                ),
+                widget.CurrentLayoutIcon(
+                    custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
+                    foreground=colors[2],
+                    background=colors[0],
+                    padding=0,
+                    scale=0.5,
+                ),
+                widget.CurrentLayout(
+                    foreground=colors[2], background=colors[0], padding=5
+                ),
+                widget.TextBox(
+                    text="|",
+                    font="Ubuntu Mono",
+                    background=colors[0],
+                    foreground="474747",
+                    padding=2,
+                    fontsize=14,
+                ),
+                widget.WindowName(
+                    foreground=colors[6], background=colors[0], padding=0
+                ),
+                separator,
                 volume_widget,
+                separator,
                 battery_widget,
-                widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
+                separator,
+                widget.Clock(
+                    format="%d-%m-%Y %a %I:%M %p",
+                    foreground=colors[8],
+                    background=colors[1],
+                ),
             ],
             24,
         ),
