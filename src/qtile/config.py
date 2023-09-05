@@ -237,7 +237,19 @@ screens = [
                     margin=6,
                     foreground=colors[2],
                     background=colors[0],
-                    mouse_callbacks={"Button1": lazy.spawn("dmenu_run")},
+                    mouse_callbacks={
+                        "Button1": lazy.run_extension(
+                            extension.DmenuRun(
+                                dmenu_prompt="Run:",
+                                dmenu_font="Ubuntu mono",
+                                foreground=colors[2],
+                                background=colors[0],
+                                selected_background=colors[2],
+                                selected_foreground=colors[2],
+                                dmenu_lines=10,
+                            )
+                        ),
+                    },
                 ),
                 separator,
                 widget.GroupBox(
