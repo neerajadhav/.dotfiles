@@ -75,6 +75,42 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
     # Decrease brightness
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
+    # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key(
+        ["mod4"],
+        "d",
+        lazy.run_extension(
+            extension.DmenuRun(
+                dmenu_prompt="Run:",
+                dmenu_font="Ubuntu mono",
+                foreground=colors[2],
+                background=colors[0],
+                selected_background=colors[2],
+                selected_foreground=colors[2],
+                dmenu_lines=10,
+            )
+        ),
+    ),
+    Key(
+        [mod],
+        "p",
+        lazy.run_extension(
+            extension.CommandSet(
+                commands={
+                    "shutdown": "shutdown now",
+                    "reboot": "reboot",
+                    "logout": "qtile cmd-obj -o cmd -f shutdown",
+                },
+                dmenu_prompt="Power:",
+                dmenu_font="Ubuntu mono",
+                foreground=colors[2],
+                background=colors[0],
+                selected_background=colors[2],
+                selected_foreground=colors[2],
+                dmenu_lines=10,
+            )
+        ),
+    ),
 ]
 
 # Define groups
@@ -109,42 +145,6 @@ layout_theme = {
     "border_focus": colors[7],
     "border_normal": colors[0],
 }
-
-layouts = [
-    layout.MonadTall(**layout_theme),
-    layout.TreeTab(
-        font="Ubuntu",
-        fontsize=10,
-        sections=["FIRST", "SECOND", "THIRD", "FOURTH"],
-        section_fontsize=10,
-        border_width=2,
-        bg_color="1c1f24",
-        active_bg="c678dd",
-        active_fg="000000",
-        inactive_bg="a9a1e1",
-        inactive_fg="1c1f24",
-        padding_left=0,
-        padding_x=0,
-        padding_y=5,
-        section_top=10,
-        section_bottom=20,
-        level_shift=8,
-        vspace=3,
-        panel_width=200,
-    ),
-    # layout.Floating(),
-    # layout.Bsp(),
-    # layout.RatioTile(**layout_theme),
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    # layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.Tile(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
-]
 
 # Define widget settings
 widget_defaults = dict(
@@ -269,11 +269,40 @@ screens = [
     ),
 ]
 
-# Define screen and layout settings
-# Change 'monadtall' to your preferred layout
 layouts = [
-    layout.MonadTall(),
-    layout.Max(),
+    layout.MonadTall(**layout_theme),
+    layout.TreeTab(
+        font="Ubuntu",
+        fontsize=10,
+        sections=["FIRST", "SECOND", "THIRD", "FOURTH"],
+        section_fontsize=10,
+        border_width=2,
+        bg_color="1c1f24",
+        active_bg="c678dd",
+        active_fg="000000",
+        inactive_bg="a9a1e1",
+        inactive_fg="1c1f24",
+        padding_left=0,
+        padding_x=0,
+        padding_y=5,
+        section_top=10,
+        section_bottom=20,
+        level_shift=8,
+        vspace=3,
+        panel_width=200,
+    ),
+    # layout.Floating(),
+    # layout.Bsp(),
+    # layout.RatioTile(**layout_theme),
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    # layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    # layout.Matrix(),
+    # layout.MonadWide(),
+    # layout.Tile(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
 # Define Qtile config
