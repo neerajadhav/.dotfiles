@@ -41,6 +41,7 @@ let
     firefox
     gh
     git
+    gparted
     gnome.gnome-keyring
     htop
     libsecret
