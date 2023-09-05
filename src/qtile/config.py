@@ -6,6 +6,14 @@ from libqtile.utils import guess_terminal
 import os
 import subprocess
 
+
+# don't forget to `chmod +x autostart.sh`
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser("~")
+    subprocess.call([home + "/.config/qtile/autostart.sh"])
+
+
 # Define mod key (Windows key)
 mod = "mod4"
 mod = "mod4"
@@ -138,14 +146,6 @@ for i, (name, kwargs) in enumerate(group_names, 1):
         ]
     )
 
-# Define layouts
-layout_theme = {
-    "border_width": 2,
-    "margin": 8,
-    "border_focus": colors[7],
-    "border_normal": colors[0],
-}
-
 # Define widget settings
 widget_defaults = dict(
     font="mononoki Nerd Font",
@@ -154,14 +154,6 @@ widget_defaults = dict(
 )
 
 extension_defaults = widget_defaults.copy()
-
-
-# Define autostart applications
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser("~")
-    subprocess.call([home + "/.config/qtile/autostart.sh"])
-
 
 # Define floating layouts
 floating_layout = layout.Floating(
@@ -312,6 +304,14 @@ screens = [
         ),
     ),
 ]
+
+# Define layouts
+layout_theme = {
+    "border_width": 2,
+    "margin": 8,
+    "border_focus": colors[7],
+    "border_normal": colors[0],
+}
 
 layouts = [
     layout.MonadTall(**layout_theme),
