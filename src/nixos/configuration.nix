@@ -54,6 +54,22 @@ Refer to readme.md file to know how to use this file.
   # Enable gnome-keyring
   services.gnome.gnome-keyring.enable = true;
 
+/*
+  services.xserver = {
+    enable = true;   
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    displayManager.defaultSession = "xfce+qtile";
+    windowManager.qtile.enable = true;
+  };
+*/
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
