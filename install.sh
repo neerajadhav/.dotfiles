@@ -50,11 +50,15 @@ apply_nix_configuration() {
         fi
         for file in "$NIXOS_DIR"/*; do
             if [ -f "$file" ]; then
+                if [ "$(basename "$file")" = "hardware-configuration.nix" ]; then
+                    echo "Skipping file: $(basename "$file")"
+                    continue  # Skip this file and continue with the next one
+                fi
                 echo -e "Backing up $(basename "$file") in $NIXOS_DIR..."
                 cp "$file" "$BACKUP_DIR/nixos/$(basename "$file")_$(date +'%Y%m%d%H%M%S').bak"
                 echo -e "${YELLOW}Backup Created:${RESET} $(basename "$file") to $BACKUP_DIR/nixos."
-                sudo rm "$file"
                 echo -e "${RED}Removed file:${RESET} $(basename "$file") from $NIXOS_DIR."
+                sudo rm "$file"
             fi
         done
 
@@ -122,9 +126,9 @@ show_menu() {
     fi
 
     if [ -f "$LOG_FILE" ] && grep -q "apply_nix_configuration" "$LOG_FILE"; then
-        echo -e "1. [${GREEN}✓${RESET}] Apply Nix configuration"
+        echo -e "2. [${GREEN}✓${RESET}] Apply Nix configuration"
     else
-        echo -e "1. [${GREEN}✓${RESET}] Apply Nix configuration"
+        echo -e "2. [${RED}✗${RESET}] Apply Nix configuration"
     fi
 
     if [ -f "$LOG_FILE" ] && grep -q "apply_qtile_configuration" "$LOG_FILE"; then

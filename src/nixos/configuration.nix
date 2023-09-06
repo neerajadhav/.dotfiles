@@ -7,7 +7,7 @@ Refer to readme.md file to know how to use this file.
 {
   imports =
     [
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./neeraj.nix
     ];
 
@@ -44,21 +44,12 @@ Refer to readme.md file to know how to use this file.
     LC_CTYPE="en_US.utf8"; # required by dmenu
   };
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
-  services.xserver = {
-    enable = true;   
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
-    displayManager.defaultSession = "xfce+qtile";
-    windowManager.qtile.enable = true;
-  };
-  services.xserver.displayManager.sddm.enable = true;
+  # Enable the XFCE Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Enable gnome-keyring
   services.gnome.gnome-keyring.enable = true;

@@ -50,7 +50,7 @@ let
     ventoy-full
   ];
 
-  appendApps = apps: qtileApps ++ unstableApps ++  commonStableApps ++ apps;
+  appendApps = apps: unstableApps ++  commonStableApps ++ apps;
 
 in {
   users.users.neeraj = {
