@@ -26,6 +26,7 @@ let
 
   # Unstable apps
   unstableApps = with pkgs; with unstable; [
+    nodejs_20
     obsidian
     virtualenv
     vscode
@@ -50,7 +51,7 @@ let
     ventoy-full
   ];
 
-  appendApps = apps: unstableApps ++  commonStableApps ++ apps;
+  appendApps = apps: qtileApps ++ unstableApps ++  commonStableApps ++ apps;
 
 in {
   users.users.neeraj = {

@@ -44,12 +44,15 @@ Refer to readme.md file to know how to use this file.
     LC_CTYPE="en_US.utf8"; # required by dmenu
   };
 
+  nixpkgs.config.pulseaudio = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.windowManager.qtile.enable = true;
 
   # Enable gnome-keyring
   services.gnome.gnome-keyring.enable = true;
