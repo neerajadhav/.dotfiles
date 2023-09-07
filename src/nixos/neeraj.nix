@@ -31,11 +31,17 @@ let
     xfce4-pulseaudio-plugin
   ];
 
+  # KDE Specific packages
+  kdeApps = with pkgs; with libsForQt5; [
+    plasma-browser-integration
+  ];
+
   # Unstable apps
   unstableApps = with pkgs; with unstable; [
     nodejs_20
     obsidian
     virtualenv
+    vlc
     vscode
     zoom-us
   ];
@@ -57,7 +63,7 @@ let
     ventoy-full
   ];
 
-  appendApps = apps: unstableApps ++  commonStableApps ++ apps;
+  appendApps = apps: kdeApps ++ unstableApps ++  commonStableApps ++ apps;
 
 in {
   users.users.neeraj = {

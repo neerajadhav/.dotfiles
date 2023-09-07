@@ -50,28 +50,12 @@ Refer to readme.md file to know how to use this file.
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.windowManager.qtile.enable = true;
+  # services.xserver.windowManager.qtile.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
-  # Enable gnome-keyring
-  services.gnome.gnome-keyring.enable = true;
-
-/*
-  services.xserver = {
-    enable = true;   
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
-    displayManager.defaultSession = "xfce+qtile";
-    windowManager.qtile.enable = true;
-  };
-*/
+  # Enable gnome-keyring for storing passwords in GNOME keyring.
+  # services.gnome.gnome-keyring.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
