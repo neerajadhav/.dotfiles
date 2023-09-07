@@ -307,14 +307,19 @@ screens = [
                 separator,
                 widget.Backlight(
                     backlight_name="amdgpu_bl1",
-                    foreground=colors[2],
-                    background=colors[1],
+                    foreground=colors[9],
+                    background=colors[0],
                     fmt="Lit: {} ",
                 ),
+                widget.Systray(
+                    foreground=colors[7],
+                    background=colors[0],
+                ),
+                separator,
                 widget.Clock(
                     format="%d-%m-%Y %a %I:%M %p",
-                    foreground=colors[8],
-                    background=colors[1],
+                    foreground=colors[4],
+                    background=colors[0],
                 ),
             ],
             24,
