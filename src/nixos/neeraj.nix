@@ -14,7 +14,9 @@ let
     alacritty
     dmenu
     dunst
+    gnome.gnome-keyring
     libnotify
+    libsecret
     nitrogen
     xfce.thunar
   ];
@@ -22,6 +24,11 @@ let
   # Gnome specific packages
   gnomeApps = with pkgs; [
     gnome.gnome-tweaks
+  ];
+
+  # XFCE Specific packages
+  xfceApps = with pkgs; with xfce; [
+    xfce4-pulseaudio-plugin
   ];
 
   # Unstable apps
@@ -40,18 +47,17 @@ let
     gh
     git
     gparted
-    gnome.gnome-keyring
     htop
-    libsecret
     micro
     motrix
     neofetch
     onlyoffice-bin
+    parted
     python3
     ventoy-full
   ];
 
-  appendApps = apps: qtileApps ++ unstableApps ++  commonStableApps ++ apps;
+  appendApps = apps: unstableApps ++  commonStableApps ++ apps;
 
 in {
   users.users.neeraj = {
