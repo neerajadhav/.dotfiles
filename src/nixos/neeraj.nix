@@ -55,6 +55,8 @@ let
     git
     gparted
     htop
+    maestral
+    maestral-gui
     micro
     motrix
     neofetch
