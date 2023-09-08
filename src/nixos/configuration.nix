@@ -46,6 +46,10 @@ Refer to readme.md file to know how to use this file.
 
   nixpkgs.config.pulseaudio = true;
 
+  # Bluetooth service
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

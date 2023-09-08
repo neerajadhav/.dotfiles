@@ -34,6 +34,7 @@ let
   # KDE Specific packages
   kdeApps = with pkgs; with libsForQt5; [
     plasma-browser-integration
+    blueman
   ];
 
   # Unstable apps
