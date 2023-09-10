@@ -39,7 +39,6 @@ let
 
   # Unstable apps
   unstableApps = with pkgs; with unstable; [
-    lite-xl
     nodejs_20
     obsidian
     virtualenv
