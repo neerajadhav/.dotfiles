@@ -12,6 +12,7 @@ let
   # Qtile specific packages
   qtileApps = with pkgs; [
     alacritty
+    blueman
     dmenu
     dunst
     gnome.gnome-keyring
@@ -34,11 +35,11 @@ let
   # KDE Specific packages
   kdeApps = with pkgs; with libsForQt5; [
     plasma-browser-integration
-    blueman
   ];
 
   # Unstable apps
   unstableApps = with pkgs; with unstable; [
+    lite-xl
     nodejs_20
     obsidian
     virtualenv

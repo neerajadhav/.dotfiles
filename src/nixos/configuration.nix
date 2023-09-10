@@ -48,7 +48,7 @@ Refer to readme.md file to know how to use this file.
 
   # Bluetooth service
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  # services.blueman.enable = true; # enable while using blueman
   
   # Enable the X11 windowing system.
   services.xserver.enable = true;
