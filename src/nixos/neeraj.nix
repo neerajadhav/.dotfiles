@@ -41,6 +41,7 @@ let
   unstableApps = with pkgs; with unstable; [
     nodejs_20
     obsidian
+    virt-manager
     virtualenv
     vlc
     vscode
@@ -55,6 +56,7 @@ let
     git
     gparted
     htop
+    hugo
     maestral
     maestral-gui
     micro
@@ -72,7 +74,7 @@ in {
   users.users.neeraj = {
     isNormalUser = true;
     description = "Neeraj";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; appendApps [];
   };
 }

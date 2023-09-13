@@ -15,6 +15,9 @@ Refer to readme.md file to know how to use this file.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
   networking.hostName = "Nimbus-2021";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
