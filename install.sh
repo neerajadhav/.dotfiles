@@ -344,45 +344,95 @@ show_menu() {
     echo -e "6. $polybar_configuration_status Apply Polybar configuration"
     echo -e "7. $rofi_configuration_status Apply Rofi configuration"
     echo -e "8. $alacritty_configuration_status Apply Alacritty configuration"
-    echo "9. Exit"
+    echo "0. Exit"
     echo -e "\n======================\n"
+}
+
+execute_selected_functions() {
+    local selected_functions="$1"
+    local IFS=" "
+    local function_numbers=($selected_functions)
+
+    for number in "${function_numbers[@]}"; do
+        case $number in
+        1)
+            set_dotProfile
+            ;;
+        2)
+            apply_nix_configuration
+            ;;
+        3)
+            apply_qtile_configuration
+            ;;
+        4)
+            apply_picom_configuration
+            ;;
+        5)
+            apply_i3_configuration
+            ;;
+        6)
+            apply_polybar_configuration
+            ;;
+        7)
+            apply_rofi_configuration
+            ;;
+        8)
+            apply_alacritty_configuration
+            ;;
+        0)
+            echo "Exiting the script."
+            exit 0
+            ;;
+        *)
+            echo -e "${RED}Invalid function number: $number. Skipping.${RESET}"
+            ;;
+        esac
+    done
 }
 
 while true; do
     show_menu
-    read -p "Enter your choice: " choice
-    case $choice in
-    1)
-        set_dotProfile
-        ;;
-    2)
-        apply_nix_configuration
-        ;;
-    3)
-        apply_qtile_configuration
-        ;;
-    4)
-        apply_picom_configuration
-        ;;
-    5)
-        apply_i3_configuration
-        ;;
-    6)
-        apply_polybar_configuration
-        ;;
-    7)
-        apply_rofi_configuration
-        ;;
-    8)
-        apply_alacritty_configuration
-        ;;
-    9)
-        echo "Exiting the script."
-        exit 0
-        ;;
-    *)
-        echo -e "${RED}Invalid choice. Please enter a valid option.${RESET}"
-        ;;
-    esac
+    read -p "Enter the function numbers to execute (space-separated): " selected_functions
+    execute_selected_functions "$selected_functions"
+
     read -n 1 -s -r -p "Press any key to continue..."
 done
+
+# while true; do
+#     show_menu
+#     read -p "Enter your choice: " choice
+#     case $choice in
+#     1)
+#         set_dotProfile
+#         ;;
+#     2)
+#         apply_nix_configuration
+#         ;;
+#     3)
+#         apply_qtile_configuration
+#         ;;
+#     4)
+#         apply_picom_configuration
+#         ;;
+#     5)
+#         apply_i3_configuration
+#         ;;
+#     6)
+#         apply_polybar_configuration
+#         ;;
+#     7)
+#         apply_rofi_configuration
+#         ;;
+#     8)
+#         apply_alacritty_configuration
+#         ;;
+#     9)
+#         echo "Exiting the script."
+#         exit 0
+#         ;;
+#     *)
+#         echo -e "${RED}Invalid choice. Please enter a valid option.${RESET}"
+#         ;;
+#     esac
+#     read -n 1 -s -r -p "Press any key to continue..."
+# done
