@@ -197,9 +197,16 @@ exec_always --no-startup-id nitrogen --restore
 # finds out, if available)
 bar {
         status_command i3status
+        position top
+        font pango:DejaVu Sans Mono 10
+        separator_symbol  / 
 }
 
 default_border pixel 3
 default_floating_border pixel 3
+gaps inner 10
 
 for_window [title="Application Finder"] floating enable
+for_window [title="Brave"] move to workspace $ws2
+for_window [title="Code"] move to workspace $ws3
+for_window [title="Thunar"] move to workspace $ws4

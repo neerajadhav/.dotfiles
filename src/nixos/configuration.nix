@@ -29,6 +29,7 @@ let
     parted
     python3
     ventoy-full
+    xarchive
   ];
 
   wmTools = with pkgs; [
@@ -42,6 +43,7 @@ let
     polybarFull
     pulseaudioFull
     rofi
+    unzip
   ];
 
   appendAppList = apps: wmTools ++ unstableApps ++ commonStableApps ++ apps;
