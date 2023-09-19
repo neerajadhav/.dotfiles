@@ -1,2 +1,4 @@
 #!/bin/sh
-nitrogen --restore
+nitrogen --restore &
+nm-applet &
+picom &

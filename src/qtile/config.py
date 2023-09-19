@@ -2,9 +2,9 @@
 from libqtile import bar, layout, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.utils import guess_terminal
 import os
 import subprocess
-
 
 # don't forget to `chmod +x autostart.sh`
 @hook.subscribe.startup_once
@@ -12,8 +12,7 @@ def autostart():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
-
-# Define mod key (Windows key)
+mod = "mod4"
 mod = "mod4"
 mod = "mod4"
 mod1 = "alt"
@@ -23,20 +22,6 @@ terminal = "alacritty -o font.size=8"
 fileManager = "thunar"
 editor = "code"
 
-colors = [
-    ["#282c34", "#282c34"],
-    ["#1c1f24", "#1c1f24"],
-    ["#dfdfdf", "#dfdfdf"],
-    ["#ff6c6b", "#ff6c6b"],
-    ["#98be65", "#98be65"],
-    ["#da8548", "#da8548"],
-    ["#51afef", "#51afef"],
-    ["#c678dd", "#c678dd"],
-    ["#46d9ff", "#46d9ff"],
-    ["#a9a1e1", "#a9a1e1"],
-]
-
-# Define key bindings
 keys = [
     # Switch between windows in current stack pane
     Key([mod], "Down", lazy.layout.down()),
@@ -56,7 +41,7 @@ keys = [
     # Toggle between different layouts
     Key([mod], "Tab", lazy.next_layout()),
     # Kill focused window
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod], "q", lazy.window.kill()),
     # Restart Qtile
     Key([mod, "control"], "r", lazy.restart()),
     # Logout/Shutdown
@@ -82,7 +67,7 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
     # Decrease brightness
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
-    # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key(
         ["mod4"],
         "d",
@@ -90,10 +75,6 @@ keys = [
             extension.DmenuRun(
                 dmenu_prompt="Run:",
                 dmenu_font="Ubuntu mono",
-                foreground=colors[2],
-                background=colors[0],
-                selected_background=colors[2],
-                selected_foreground=colors[2],
                 dmenu_lines=10,
             )
         ),
@@ -110,17 +91,12 @@ keys = [
                 },
                 dmenu_prompt="Power:",
                 dmenu_font="Ubuntu mono",
-                foreground=colors[2],
-                background=colors[0],
-                selected_background=colors[2],
-                selected_foreground=colors[2],
                 dmenu_lines=10,
             )
         ),
     ),
 ]
 
-# Define groups
 group_names = [
     ("1", {"layout": "monadtall"}),
     ("2", {"layout": "max"}),
@@ -135,74 +111,64 @@ group_names = [
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
-for i, (name, kwargs) in enumerate(group_names, 1):
+for i in groups:
     keys.extend(
         [
-            # Switch to group
-            Key([mod], str(i), lazy.group[name].toscreen()),
-            # Send window to group
-            Key([mod, "shift"], str(i), lazy.window.togroup(name)),
+            # mod1 + letter of group = switch to group
+            Key(
+                [mod],
+                i.name,
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
+            ),
+            # mod1 + shift + letter of group = switch to & move focused window to group
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(i.name),
+            ),
+            # Or, use below if you prefer not to switch to that group.
+            # # mod1 + shift + letter of group = move focused window to group
+            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
-# Define widget settings
-widget_defaults = dict(
-    font="mononoki Nerd Font",
-    fontsize=12,
-    padding=3,
-)
+layout_theme = {
+    "border_width": 3,
+    "margin": 10,
+    "border_focus": "ffffff",
+    "border_normal": "cccccc",
+}
 
-extension_defaults = widget_defaults.copy()
-
-# Define floating layouts
-floating_layout = layout.Floating(
-    float_rules=[
-        {"wmclass": "confirm"},
-        {"wmclass": "dialog"},
-        {"wmclass": "download"},
-        {"wmclass": "error"},
-        {"wmclass": "file_progress"},
-        {"wmclass": "notification"},
-        {"wmclass": "splash"},
-        {"wmclass": "toolbar"},
-        {"wmclass": "confirmreset"},
-        {"wmclass": "makebranch"},
-        {"wmclass": "maketag"},
-        {"wname": "branchdialog"},
-        {"wname": "pinentry"},
-        {"wname": "ssh-askpass"},
-    ]
-)
-
-# Define mouse bindings
-mouse = [
-    Drag(
-        [mod],
-        "Button1",
-        lazy.window.set_position_floating(),
-        start=lazy.window.get_position(),
-    ),
-    Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
-    ),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+layouts = [
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    # layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    layout.MonadTall(**layout_theme),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    layout.TreeTab(**layout_theme),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
-# Define floating window settings
-floating_layout = layout.Floating(
-    float_rules=[
-        # Add your custom rules here
-    ],
-    border_focus="#ff0000",
+widget_defaults = dict(
+    font="sans",
+    fontsize=12,
+    padding=5,
 )
+extension_defaults = widget_defaults.copy()
 
-# Modify the widget.Volume() widget
 volume_widget = widget.Volume(
     emoji=False,
     update_interval=0.1,
     fmt="Vol: {}",
-    foreground=colors[9],
-    background=colors[0],
 )
 
 battery_widget = widget.Battery(
@@ -213,166 +179,92 @@ battery_widget = widget.Battery(
     discharge_char="",
     update_delay=0.1,
     format="Bat: {char}{percent:2.0%}",
-    foreground=colors[4],
-    background=colors[0],
 )
 
-separator = widget.Sep(
-    linewidth=0,
-    padding=6,
-    foreground=colors[2],
-    background=colors[0],
+logo_widget = widget.Image(
+    filename="~/.config/qtile/garuda.png",
+    scale="False",
+    margin=6,
+    mouse_callbacks={
+        "Button1": lazy.run_extension(
+            extension.DmenuRun(
+                dmenu_prompt="Run:",
+                dmenu_font="Ubuntu mono",
+                dmenu_lines=10,
+            )
+        ),
+    },
 )
 
-# Define the bar
 screens = [
     Screen(
         top=bar.Bar(
             [
-                separator,
-                widget.Image(
-                    filename="~/.config/qtile/garuda.png",
-                    scale="False",
-                    margin=6,
-                    foreground=colors[2],
-                    background=colors[0],
-                    mouse_callbacks={
-                        "Button1": lazy.run_extension(
-                            extension.DmenuRun(
-                                dmenu_prompt="Run:",
-                                dmenu_font="Ubuntu mono",
-                                foreground=colors[2],
-                                background=colors[0],
-                                selected_background=colors[2],
-                                selected_foreground=colors[2],
-                                dmenu_lines=10,
-                            )
-                        ),
+                logo_widget,
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
                     },
+                    name_transform=lambda name: name.upper(),
                 ),
-                separator,
-                widget.GroupBox(
-                    font="Ubuntu Bold",
-                    fontsize=9,
-                    margin_y=3,
-                    margin_x=0,
-                    padding_y=5,
-                    padding_x=3,
-                    borderwidth=3,
-                    active=colors[2],
-                    inactive=colors[7],
-                    rounded=False,
-                    highlight_color=colors[1],
-                    highlight_method="line",
-                    this_current_screen_border=colors[6],
-                    this_screen_border=colors[4],
-                    other_current_screen_border=colors[6],
-                    other_screen_border=colors[4],
-                    foreground=colors[2],
-                    background=colors[0],
-                ),
-                widget.TextBox(
-                    text="|",
-                    font="Ubuntu Mono",
-                    background=colors[0],
-                    foreground="474747",
-                    padding=2,
-                    fontsize=14,
-                ),
-                widget.CurrentLayoutIcon(
-                    custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-                    foreground=colors[2],
-                    background=colors[0],
-                    padding=0,
-                    scale=0.5,
-                ),
-                widget.CurrentLayout(
-                    foreground=colors[2], background=colors[0], padding=5
-                ),
-                widget.TextBox(
-                    text="|",
-                    font="Ubuntu Mono",
-                    background=colors[0],
-                    foreground="474747",
-                    padding=2,
-                    fontsize=14,
-                ),
-                widget.WindowName(
-                    foreground=colors[6], background=colors[0], padding=0
-                ),
-                separator,
                 volume_widget,
-                separator,
                 battery_widget,
-                separator,
-                widget.Backlight(
-                    backlight_name="amdgpu_bl1",
-                    foreground=colors[9],
-                    background=colors[0],
-                    fmt="Lit: {} ",
-                ),
-                widget.Systray(
-                    foreground=colors[7],
-                    background=colors[0],
-                ),
-                separator,
-                widget.Clock(
-                    format="%d-%m-%Y %a %I:%M %p",
-                    foreground=colors[4],
-                    background=colors[0],
-                ),
+                widget.Systray(),
+                widget.Clock(format="%d-%m-%Y %a %I:%M %p"),
             ],
             24,
+            margin = [10, 10, 0, 10],
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
 
-# Define layouts
-layout_theme = {
-    "border_width": 2,
-    "margin": 8,
-    "border_focus": colors[7],
-    "border_normal": colors[0],
-}
-
-layouts = [
-    layout.MonadTall(**layout_theme),
-    layout.TreeTab(
-        font="Ubuntu",
-        fontsize=10,
-        sections=["FIRST", "SECOND", "THIRD", "FOURTH"],
-        section_fontsize=10,
-        border_width=2,
-        bg_color="1c1f24",
-        active_bg="c678dd",
-        active_fg="000000",
-        inactive_bg="a9a1e1",
-        inactive_fg="1c1f24",
-        padding_left=0,
-        padding_x=0,
-        padding_y=5,
-        section_top=10,
-        section_bottom=20,
-        level_shift=8,
-        vspace=3,
-        panel_width=200,
-    ),
-    # layout.Floating(),
-    # layout.Bsp(),
-    # layout.RatioTile(**layout_theme),
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    # layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.Tile(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
-# Define Qtile config
-# Replace 'mod' and keybindings with your preferred settings
-# Customize layouts, groups, and widgets as needed
-# Add autostart commands, floating window rules, etc.
-# Save this file as ~/.config/qtile/config.py
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+
+# If things like steam games want to auto-minimize themselves when losing
+# focus, should we respect this or not?
+auto_minimize = True
+
+# When using the Wayland backend, this can be used to configure input devices.
+wl_input_rules = None
+
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# string besides java UI toolkits; you can see several discussions on the
+# mailing lists, GitHub issues, and other WM documentation that suggest setting
+# this string if your java app doesn't work correctly. We may as well just lie
+# and say that we're a working one by default.
+#
+# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
+# java that happens to be on java's whitelist.
+wmname = "LG3D"
