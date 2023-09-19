@@ -5,44 +5,44 @@ let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
   unstableApps = with pkgs; with unstable; [
-  brave
-  obsidian
-  virt-manager
-  virtualenv
-  vlc
-  vscode
-  zoom-us
-];
+    brave
+    obsidian
+    virt-manager
+    virtualenv
+    vlc
+    vscode
+    zoom-us
+  ];
 
-commonStableApps = with pkgs; [
-  gh
-  git
-  gparted
-  htop
-  hugo
-  maestral
-  maestral-gui
-  micro
-  motrix
-  neofetch
-  onlyoffice-bin
-  parted
-  python3
-  ventoy-full
-];
+  commonStableApps = with pkgs; [
+    gh
+    git
+    gparted
+    htop
+    hugo
+    maestral
+    maestral-gui
+    micro
+    motrix
+    neofetch
+    onlyoffice-bin
+    parted
+    python3
+    ventoy-full
+  ];
 
-wmTools = with pkgs; [
-  alacritty
-  dmenu
-  gnome.gnome-keyring
-  networkmanagerapplet
-  nitrogen
-  picom
-  polkit_gnome
-  polybarFull
-  pulseaudioFull
-  rofi
-];
+  wmTools = with pkgs; [
+    alacritty
+    dmenu
+    gnome.gnome-keyring
+    networkmanagerapplet
+    nitrogen
+    picom
+    polkit_gnome
+    polybarFull
+    pulseaudioFull
+    rofi
+  ];
 
   appendAppList = apps: wmTools ++ unstableApps ++ commonStableApps ++ apps;
 
