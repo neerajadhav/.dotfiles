@@ -37,7 +37,9 @@ disk "/" {
 }
 
 memory {
-        format = "  %used "
+        format = "   %used "
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
 }
 
 disk "/home" {
@@ -54,8 +56,8 @@ run_watch VPN {
 }
 
 wireless _first_ {
-        format_up = " (%quality at %essid, %bitrate) "
-        format_down = "  "
+        format_up = " %quality - %essid"
+        format_down = " "
 }
 
 ethernet eno16777736 {
@@ -65,7 +67,7 @@ ethernet eno16777736 {
 }
 
 battery 1 {
-        format = "%status %percentage"
+        format = "%status %percentage %emptytime"
         format_down = "No battery"
         status_chr = "⚡ "
         status_bat = " "
@@ -77,8 +79,7 @@ battery 1 {
 
 cpu_temperature 0 {
         format = " 󰈸 %degrees °C "
-        max_threshold = 42
-        # path = "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input"
+        max_threshold = 50
 }
 
 cpu_usage {
@@ -91,7 +92,7 @@ load {
 }
 
 tztime localdate {
-        format = "  %a %d-%m-%Y "
+        format = "   %a %d-%m-%Y "
 }
 
 tztime localtime {
