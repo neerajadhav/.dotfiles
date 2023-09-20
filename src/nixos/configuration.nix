@@ -106,7 +106,7 @@ in {
   users.users.neeraj = {
     isNormalUser = true;
     description = "Neeraj";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; appendAppList [ ];
   };
 
@@ -136,6 +136,10 @@ in {
     };
   };
 
+  # Virtualisation
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+  
   # Bluetooth service
   hardware.bluetooth.enable = true;
   services.blueman.enable = true; # enable while using blueman

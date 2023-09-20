@@ -123,7 +123,7 @@ bindsym $mod+a focus parent
 set $ws1 "1:Browser"
 set $ws2 "2:Editor"
 set $ws3 "3:Files"
-set $ws4 "4:General"
+set $ws4 "4:Virt-Manager"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -214,3 +214,4 @@ for_window [title="Application Finder"] floating enable
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
 for_window [title="Thunar"] move to workspace $ws3
+for_window [title="Virtual Machine Manager"] move to workspace $ws4
