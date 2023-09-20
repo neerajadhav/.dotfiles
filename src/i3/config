@@ -189,7 +189,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --set-zoom-fill --random ~/Pictures/Wallpapers/
 
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 

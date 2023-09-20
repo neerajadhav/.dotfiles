@@ -6,6 +6,7 @@ let
 
   unstableApps = with pkgs; with unstable; [
     brave
+    electron_25
     obsidian
     virt-manager
     virtualenv
