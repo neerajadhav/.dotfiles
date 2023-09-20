@@ -1,2 +1,4 @@
 //@theme "/nix/store/7didv3595k21rr5ai929grglznym2799-rofi-1.7.5/share/rofi/themes/docu.rasi"
-@theme "/nix/store/7didv3595k21rr5ai929grglznym2799-rofi-1.7.5/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/nix/store/7didv3595k21rr5ai929grglznym2799-rofi-1.7.5/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/nix/store/7didv3595k21rr5ai929grglznym2799-rofi-1.7.5/share/rofi/themes/sidebar.rasi"
+@theme "/nix/store/7didv3595k21rr5ai929grglznym2799-rofi-1.7.5/share/rofi/themes/android_notification.rasi"
