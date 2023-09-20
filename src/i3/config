@@ -201,8 +201,13 @@ bar {
         font pango:DejaVu Sans Mono 10
         separator_symbol 
         colors {
-                background #000000
-                statusline #ffffff
+                separator #444444
+                background #192331
+                statusline #B1B1B1
+                focused_workspace #2B5489 #2B5489 #f1f1f1
+                # active_workspace #333333 #333333 #888888
+                inactive_workspace #161f27ed #161f27ed #f1f1f1
+                urgent_workspace #be3841 #be3841 #ffffff
         }
 }
 
