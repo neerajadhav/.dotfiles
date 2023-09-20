@@ -58,7 +58,7 @@ memory {
 }
 
 cpu_temperature 0 {
-        format = "<span color='#D35400' size='large'>󱠇</span> <span bgcolor='#D35400' foreground='black'> %degrees °C </span>"
+        format = "<span color='#D35400' size='large'>󱠇 </span> <span bgcolor='#D35400' foreground='white'> %degrees °C </span>"
         max_threshold = 50
 }
 
@@ -79,7 +79,7 @@ battery 1 {
 }
 
 tztime localtime {
-        format = "<span color='#00dddd' size='large'>  </span><span bgcolor='#00dddd' foreground='black'> %I:%M %p </span>"
+        format = "<span color='#00dddd' size='large'>  </span><span bgcolor='#00dddd' foreground='black'> %I:%M %p </span> "
 }
 
 disk "/home" {

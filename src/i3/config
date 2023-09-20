@@ -200,16 +200,21 @@ bar {
         status_command i3status
         position top
         font pango:DejaVu Sans Mono 10
-        separator_symbol 
+        separator_symbol " "
         colors {
-                separator #192331
                 background #192331
-                statusline #B1B1B1
-                focused_workspace #2B5489 #2B5489 #f1f1f1
-                # active_workspace #333333 #333333 #888888
-                inactive_workspace #192331 #192331 #f1f1f1
-                urgent_workspace #be3841 #be3841 #f1f1f1
+                statusline #ffffff
+                separator #ffffff
+
+                focused_workspace  #4c7899 #2B5489 #ffffff
+                active_workspace   #333333 #5f676a #ffffff
+                inactive_workspace #2B5489 #192331 #888888
+                urgent_workspace   #D32F2F #900000 #ffffff
+                binding_mode       #D32F2F #900000 #ffffff
         }
+        padding 3px 0
+        tray_padding 5px
+        workspace_min_width 100
 }
 
 default_border pixel 3
