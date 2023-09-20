@@ -50,11 +50,11 @@ tiling_drag modifier titlebar
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec "alacritty -o font.size=8"
+bindsym $mod+Return exec --no-startup-id "alacritty -o font.size=8"
 # Open file manager
-bindsym $mod+Shift+f exec "thunar"
+bindsym $mod+Shift+f exec --no-startup-id "thunar"
 # Open browser
-bindsym $mod+b exec "brave"
+bindsym $mod+b exec --no-startup-id "brave"
 
 
 # kill focused window
@@ -120,10 +120,10 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
+set $ws1 "1:Browser"
+set $ws2 "2:Editor"
+set $ws3 "3:Files"
+set $ws4 "4:General"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -199,7 +199,11 @@ bar {
         status_command i3status
         position top
         font pango:DejaVu Sans Mono 10
-        separator_symbol  / 
+        separator_symbol 
+        colors {
+                background #000000
+                statusline #ffffff
+        }
 }
 
 default_border pixel 3
@@ -207,6 +211,6 @@ default_floating_border pixel 3
 gaps inner 10
 
 for_window [title="Application Finder"] floating enable
-for_window [title="Brave"] move to workspace $ws2
-for_window [title="Code"] move to workspace $ws3
-for_window [title="Thunar"] move to workspace $ws4
+for_window [title="Brave"] move to workspace $ws1
+for_window [title="Code"] move to workspace $ws2
+for_window [title="Thunar"] move to workspace $ws3
