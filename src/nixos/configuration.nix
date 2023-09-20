@@ -88,8 +88,6 @@ in {
       enable = true;
       extraPackages = with pkgs; [
         i3status
-        i3lock
-        i3blocks
      ];
     };
     desktopManager = {
@@ -100,6 +98,7 @@ in {
         enableXfwm = false;
       };
     };
+    displayManager.lightdm.enable = true;
     displayManager.defaultSession = "xfce+i3";
   };
 
