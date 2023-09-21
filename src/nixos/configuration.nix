@@ -39,9 +39,9 @@ let
     gnome.gnome-keyring
     networkmanagerapplet
     nitrogen
+    pasystray
     picom
     polkit_gnome
-    polybarFull
     pulseaudioFull
     rofi
     unzip
