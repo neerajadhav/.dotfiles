@@ -119,11 +119,11 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:Browser"
-set $ws2 "2:Editor"
-set $ws3 "3:Files"
-set $ws4 "4:Virt-Manager"
+# We use variables to avoid repeating the names in multiple places. ["", "", "", "", "", "", "", "", "", "",]
+set $ws1 "1  "
+set $ws2 "2 󰨞"
+set $ws3 "3 "
+set $ws4 "4 "
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -214,7 +214,7 @@ bar {
         }
         padding 3px 0
         tray_padding 5px
-        workspace_min_width 100
+        workspace_min_width 50
 }
 
 default_border pixel 3

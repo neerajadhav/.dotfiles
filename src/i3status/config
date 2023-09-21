@@ -42,7 +42,7 @@ order += "tztime localtime"
 
 volume master {
         format = "<span bgcolor='#FF8A65' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#FF8A65'> %volume </span>"
-        format_muted = "<span bgcolor='#D32F2F' foreground='black' size='large'>  </span><span bgcolor='#111111' color='#D32F2F'> Muted </span>"
+        format_muted = "<span bgcolor='#D32F2F' foreground='black' size='large'> 󰝟 </span><span bgcolor='#111111' color='#D32F2F'> Muted </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
