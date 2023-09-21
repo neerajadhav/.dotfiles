@@ -32,8 +32,16 @@ order += "tztime localtime"
 # order += "ethernet eno16777736"
 # order += "run_watch DHCP"
 
+# Happy: #75C2F6 #CAEDFF #FEFFAC #FBF0B2 #FFB6D9 #FFC7EA #D67BFF #D8B4F8
+# Cold: #614BC3 #6F61C0 #8BE8E5 #33BBC5 #8BE8E5 #85E6C5 #D5FFE4 #C8FFE0
+# Vintage: #FF8A65 #FFAB91 #7B1FA2 #512DA8 #303F9F #1976D2 #0288D1 #0097A7
+# Dark: #212121 #303030 #424242 #616161 #757575 #9E9E9E #BDBDBD #E0E0E0
+# Light: #FAFAFA #F5F5F5 #EEEEEE #E0E0E0 #BDBDBD #9E9E9E #757575 #616161
+# Warm: #FF8A65 #FFAB91 #FFCCBC #FFE0B2 #FFCC80 #FFB74D #FFA726 #FF9800
+# Cool: #4FC3F7 #4DD0E1 #4DB6AC #81C784 #AED581 #DCE775 #FFF176 #FFD54F
+
 volume master {
-        format = "<span bgcolor='#00BFA5' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#00BFA5'> %volume </span>"
+        format = "<span bgcolor='#FF8A65' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#FF8A65'> %volume </span>"
         format_muted = "<span bgcolor='#D32F2F' foreground='black' size='large'>  </span><span bgcolor='#111111' color='#D32F2F'> Muted </span>"
         device = "default"
         mixer = "Master"
@@ -41,33 +49,32 @@ volume master {
 }
 
 wireless _first_ {
-        format_up = "<span bgcolor='#3498DB' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#42adf5'>%quality %essid </span>"
+        format_up = "<span bgcolor='#FFAB91' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#FFAB91'>%quality %essid </span>"
         format_down = "<span bgcolor='#D32F2F' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#D32F2F'> Offline </span>"
 }
 
-
 disk "/" {
-        format = "<span bgcolor='#27AE60' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#27AE60'> %avail </span>"
+        format = "<span bgcolor='#7B1FA2' foreground='white' size='large'>   </span><span bgcolor='#111111' color='#cb5cfa'> %avail </span>"
         prefix_type = custom
 }
 
 memory {
-        format = "<span bgcolor='#8E44AD' foreground='white' size='large'>   </span><span bgcolor='#111111' color='#d375fa'> %used </span>"
+        format = "<span bgcolor='#512DA8' foreground='white' size='large'>   </span><span bgcolor='#111111' color='#7842fc'> %used </span>"
         threshold_degraded = "10%"
         format_degraded = "MEMORY: %free"
 }
 
 cpu_temperature 0 {
-        format = "<span bgcolor='#D35400' foreground='white' size='large'> 󰈸 </span><span bgcolor='#111111' color='#f5721b'> %degrees °C </span>"
+        format = "<span bgcolor='#303F9F' foreground='white' size='large'> 󰈸 </span><span bgcolor='#111111' color='#5f74fa'> %degrees °C </span>"
         max_threshold = 50
 }
 
 tztime localdate {
-        format = "<span bgcolor='#F39C12' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#F39C12'> %a %d-%m-%Y </span>"
+        format = "<span bgcolor='#1976D2' foreground='white' size='large'>   </span><span bgcolor='#111111' color='#208cf7'> %a %d-%m-%Y </span>"
 }
 
 battery 1 {
-        format = "<span bgcolor='#34e0bf' foreground='black' size='large'> %status </span><span bgcolor='#111111' color='#34e0bf'> %percentage </span>"
+        format = "<span bgcolor='#0288D1' foreground='black' size='large'> %status </span><span bgcolor='#111111' color='#0288D1'> %percentage </span>"
         format_down = "No battery"
         status_chr = "⚡ "
         status_bat = " "
@@ -79,7 +86,7 @@ battery 1 {
 }
 
 tztime localtime {
-        format = "<span bgcolor='#00dddd' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#00dddd'> %I:%M %p </span> "
+        format = "<span bgcolor='#0097A7' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#0097A7'> %I:%M %p </span> "
 }
 
 # volume master {
