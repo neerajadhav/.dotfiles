@@ -41,7 +41,7 @@ volume master {
 }
 
 wireless _first_ {
-        format_up = "<span bgcolor='#3498DB' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#3498DB'> %quality %essid </span>"
+        format_up = "<span bgcolor='#3498DB' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#42adf5'> %quality %essid </span>"
         format_down = "<span color='#D32F2F'>  Offline</span>"
 }
 
