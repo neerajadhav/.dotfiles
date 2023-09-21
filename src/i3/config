@@ -120,7 +120,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places. ["", "", "", "", "", "", "", "", "", "",]
-set $ws1 "1  "
+set $ws1 "1 "
 set $ws2 "2 󰨞"
 set $ws3 "3 "
 set $ws4 "4 "
@@ -213,10 +213,12 @@ bar {
                 binding_mode       #D32F2F #900000 #ffffff
         }
         padding 3px 0
+        tray_output primary
         tray_padding 5px
         workspace_min_width 50
 }
 
+# for_window [all] title_window_icon on
 default_border pixel 3
 default_floating_border pixel 3
 gaps inner 10
