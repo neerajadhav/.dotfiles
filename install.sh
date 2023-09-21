@@ -229,34 +229,7 @@ apply_polybar_configuration() {
 }
 
 apply_rofi_configuration() {
-    local CONFIG_DIR="$HOME/.config/rofi"
-    local DOTFILES_ROFI_DIR="$DOTFILES_DIR/src/rofi"
-
-    if check_executed "apply_rofi_configuration"; then
-        echo -e "${RED}apply_rofi_configuration has already been executed.${RESET}"
-        return
-    fi
-
-    if [ -d "$CONFIG_DIR" ]; then
-        mkdir -p "$BACKUP_DIR/rofi"
-        for file in "$CONFIG_DIR"/*; do
-            if [ -f "$file" ]; then
-                backup_file "$file" "$BACKUP_DIR/rofi"
-                rm "$file"
-            fi
-        done
-
-        for file in "$DOTFILES_ROFI_DIR"/*; do
-            if [ -f "$file" ]; then
-                create_symlink "$file" "$CONFIG_DIR/$(basename "$file")"
-            fi
-        done
-
-        echo "apply_rofi_configuration $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
-        echo -e "${GREEN}Rofi configuration applied successfully.${RESET}"
-    else
-        echo -e "${RED}${CONFIG_DIR} does not exist.${RESET} Skipping the backup and symlink creation."
-    fi
+    echo -e "${YELLOW}For rofi ricing visit: https://github.com/newmanls/rofi-themes-collection${RESET}"
 }
 
 apply_alacritty_configuration() {

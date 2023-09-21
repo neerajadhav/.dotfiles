@@ -59,12 +59,13 @@ bindsym $mod+b exec --no-startup-id "brave"
 
 # kill focused window
 bindsym $mod+q kill
+# bindsym $mod+p exec --no-startup-id "~/.config/rofi/powermenu/type-1/powermenu.sh"
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
+bindcode $mod+40 exec "rofi -show drun -theme $HOME/.config/rofi/launchers/type-1/style-8.rasi"
+# There also is i3-dmenu-desktop which only displays applications shipping a 
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
