@@ -290,6 +290,37 @@ apply_alacritty_configuration() {
     fi
 }
 
+apply_i3status_configuration() {
+    local CONFIG_DIR="$HOME/.config/i3status"
+    local DOTFILES_I3STATUS_DIR="$DOTFILES_DIR/src/i3status"
+
+    if check_executed "apply_i3status_configuration"; then
+        echo -e "${RED}apply_i3status_configuration has already been executed.${RESET}"
+        return
+    fi
+
+    if [ -d "$CONFIG_DIR" ]; then
+        mkdir -p "$BACKUP_DIR/i3status"
+        for file in "$CONFIG_DIR"/*; do
+            if [ -f "$file" ]; then
+                backup_file "$file" "$BACKUP_DIR/i3status"
+                rm "$file"
+            fi
+        done
+
+        for file in "$DOTFILES_I3STATUS_DIR"/*; do
+            if [ -f "$file" ]; then
+                create_symlink "$file" "$CONFIG_DIR/$(basename "$file")"
+            fi
+        done
+
+        echo "apply_i3status_configuration $(date +'%Y%m%d%H%M%S')" >> "$LOG_FILE"
+        echo -e "${GREEN}i3status configuration applied successfully.${RESET}"
+    else
+        echo -e "${RED}${CONFIG_DIR} does not exist.${RESET} Skipping the backup and symlink creation."
+    fi
+}
+
 show_menu() {
     clear
     echo -e "======================\n"
@@ -303,6 +334,7 @@ show_menu() {
     local polybar_configuration_status="[${RED}✗${RESET}]"
     local rofi_configuration_status="[${RED}✗${RESET}]"
     local alacritty_configuration_status="[${RED}✗${RESET}]"
+    local i3status_configuration_status="[${RED}✗${RESET}]"
 
     if check_executed "set_dotProfile"; then
         dotProfile_status="[${GREEN}✓${RESET}]"
@@ -336,6 +368,10 @@ show_menu() {
         alacritty_configuration_status="[${GREEN}✓${RESET}]"
     fi
 
+    if check_executed "apply_i3status_configuration"; then
+        i3status_configuration_status="[${GREEN}✓${RESET}]"
+    fi
+
     echo -e "1. $dotProfile_status Set dotProfile"
     echo -e "2. $nix_configuration_status Apply Nix configuration"
     echo -e "3. $qtile_configuration_status Apply Qtile configuration"
@@ -344,6 +380,7 @@ show_menu() {
     echo -e "6. $polybar_configuration_status Apply Polybar configuration"
     echo -e "7. $rofi_configuration_status Apply Rofi configuration"
     echo -e "8. $alacritty_configuration_status Apply Alacritty configuration"
+    echo -e "9. $i3status_configuration_status Apply i3status configuration"
     echo "0. Exit"
     echo -e "\n======================\n"
 }
@@ -378,6 +415,9 @@ execute_selected_functions() {
             ;;
         8)
             apply_alacritty_configuration
+            ;;
+        9)
+            apply_i3status_configuration
             ;;
         0)
             echo "Exiting the script."
