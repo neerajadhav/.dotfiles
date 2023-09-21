@@ -12,6 +12,7 @@ let
     virtualenv
     vlc
     vscode
+    xarchiver
     zoom-us
   ];
 
@@ -30,7 +31,7 @@ let
     parted
     python3
     ventoy-full
-    xarchive
+    xfce.thunar-archive-plugin
   ];
 
   wmTools = with pkgs; [

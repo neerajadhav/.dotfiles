@@ -33,7 +33,7 @@ order += "tztime localtime"
 # order += "run_watch DHCP"
 
 volume master {
-        format = "<span color='#00BFA5' size='large'> </span> <span bgcolor='#00BFA5' foreground='black'> %volume </span>"
+        format = "<span color='#00BFA5' size='large'> </span> <span bgcolor='#00BFA5' foreground='black'> %volume </span> "
         format_muted = "<span color='#D32F2F'> %volume</span>"
         device = "default"
         mixer = "Master"
@@ -41,29 +41,29 @@ volume master {
 }
 
 wireless _first_ {
-        format_up = "<span color='#3498DB' size='large'> </span> <span bgcolor='#3498DB' foreground='black'>%quality %essid </span>"
+        format_up = "<span color='#3498DB' size='large'> </span> <span bgcolor='#3498DB' foreground='black'>%quality %essid </span> "
         format_down = "<span color='#D32F2F'>  Offline</span>"
 }
 
 
 disk "/" {
-        format = "<span color='#27AE60' size='large'> </span> <span bgcolor='#27AE60' foreground='black'> %avail </span>"
+        format = "<span color='#27AE60' size='large'> </span> <span bgcolor='#27AE60' foreground='black'> %avail </span> "
         prefix_type = custom
 }
 
 memory {
-        format = "<span color='#8E44AD' size='large'> </span> <span bgcolor='#8E44AD' foreground='white'> %used </span>"
+        format = "<span color='#8E44AD' size='large'> </span> <span bgcolor='#8E44AD' foreground='white'> %used </span> "
         threshold_degraded = "10%"
         format_degraded = "MEMORY: %free"
 }
 
 cpu_temperature 0 {
-        format = "<span color='#D35400' size='large'>󱠇 </span> <span bgcolor='#D35400' foreground='white'> %degrees °C </span>"
+        format = "<span color='#D35400' size='large'>󱠇 </span> <span bgcolor='#D35400' foreground='white'> %degrees °C </span> "
         max_threshold = 50
 }
 
 tztime localdate {
-        format = "<span color='#F39C12' size='large'> </span> <span bgcolor='#F39C12' foreground='black'> %a %d-%m-%Y </span>"
+        format = "<span color='#F39C12' size='large'> </span> <span bgcolor='#F39C12' foreground='black'> %a %d-%m-%Y </span> "
 }
 
 battery 1 {
@@ -79,7 +79,7 @@ battery 1 {
 }
 
 tztime localtime {
-        format = "<span color='#00dddd' size='large'>  </span><span bgcolor='#00dddd' foreground='black'> %I:%M %p </span> "
+        format = "<span color='#00dddd' size='large'>  </span><span bgcolor='#00dddd' foreground='black'> %I:%M %p </span>  "
 }
 
 disk "/home" {
