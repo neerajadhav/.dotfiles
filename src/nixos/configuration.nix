@@ -1,127 +1,114 @@
 { config, pkgs, ... }:
 
-let
+{
 
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-
-  unstableApps = with pkgs; with unstable; [
-    brave
-    electron_25
-    obsidian
-    virt-manager
-    virtualenv
-    vlc
-    vscode
-    xarchiver
-    zoom-us
-  ];
-
-  commonStableApps = with pkgs; [
-    gh
-    git
-    gparted
-    htop
-    hugo
-    maestral
-    maestral-gui
-    micro
-    motrix
-    neofetch
-    onlyoffice-bin
-    parted
-    python3
-    ventoy-full
-    xfce.thunar-archive-plugin
-  ];
-
-  wmTools = with pkgs; [
-    alacritty
-    dmenu
-    gnome.gnome-keyring
-    networkmanagerapplet
-    nitrogen
-    pasystray
-    picom
-    polkit_gnome
-    pulseaudioFull
-    rofi
-    vim
-    unzip
-  ];
-
-  appendAppList = apps: wmTools ++ unstableApps ++ commonStableApps ++ apps;
-
-in {
   imports = [
     /etc/nixos/hardware-configuration.nix
+    ./neeraj.nix
   ];
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "btrfs" "ext2" "ext3" "ext4" "exfat" "f2fs" "fat8" "fat16" "fat32" "ntfs" "xfs" ];
+  boot = {
+    blacklistedKernelModules = [ "snd_pcsp" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = [
+      "ntfs"
+    ];
+  };
 
   # Networking
-  networking.hostName = "Nimbus-2021";
-  networking.networkmanager.enable = true;
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
+    };
+    hostName = "Nimbus-2021";
+    networkmanager.enable = true;
+  };
 
   # Timezone and Locale
   time.timeZone = "Asia/Kolkata";
-  i18n.defaultLocale = "en_IN";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IN";
-    LC_IDENTIFICATION = "en_IN";
-    LC_MEASUREMENT = "en_IN";
-    LC_MONETARY = "en_IN";
-    LC_NAME = "en_IN";
-    LC_NUMERIC = "en_IN";
-    LC_PAPER = "en_IN";
-    LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
-    LC_CTYPE="en_US.utf8"; # required by dmenu
+  i18n = {
+    defaultLocale = "en_IN";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_IN";
+      LC_IDENTIFICATION = "en_IN";
+      LC_MEASUREMENT = "en_IN";
+      LC_MONETARY = "en_IN";
+      LC_NAME = "en_IN";
+      LC_NUMERIC = "en_IN";
+      LC_PAPER = "en_IN";
+      LC_TELEPHONE = "en_IN";
+      LC_TIME = "en_IN";
+      LC_CTYPE="en_US.utf8"; # required by dmenu
+    };
   };
 
   # X Server
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-    enable = true;
-    # windowManager.qtile.enable = true;
-    windowManager.i3 = {
+  services = {
+    xserver = {
+      layout = "us";
+      xkbVariant = "";
       enable = true;
-      extraPackages = with pkgs; [
-        i3status
-     ];
-    };
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
+      # windowManager.qtile.enable = true;
+      windowManager.i3 = {
         enable = true;
-        noDesktop = true;
-        enableXfwm = false;
+        extraPackages = with pkgs; [
+          i3status
+      ];
+      };
+      desktopManager = {
+        xterm.enable = false;
+        xfce = {
+          enable = true;
+          noDesktop = true;
+          enableXfwm = false;
+        };
+      };
+      displayManager = {
+        lightdm.enable = true;
+        defaultSession = "xfce+i3";
       };
     };
-    displayManager.lightdm.enable = true;
-    displayManager.defaultSession = "xfce+i3";
+    gvfs.enable = true;
+    gnome.gnome-keyring.enable = true;
+    blueman.enable = true; # enable while using blueman
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
   };
 
-  # User settings
-  users.users.neeraj = {
-    isNormalUser = true;
-    description = "Neeraj";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; appendAppList [ ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
+    };
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [ ];
 
   # Essential programs and services
-  programs.thunar.enable = true;
-  # services.gvfs.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  security.polkit.enable = true;
+  programs = {
+    thunar.enable = true;
+    dconf.enable = true;
+  };
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
+
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
@@ -141,24 +128,16 @@ in {
 
   # Virtualisation
   virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
   
   # Bluetooth service
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true; # enable while using blueman
-
-  # Sound
-  nixpkgs.config.pulseaudio = true;
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    pulseaudio.enable = false;
   };
 
-  system.stateVersion = "23.05";
+  # Sound
+  sound.enable = true;
 
+  # Don't touch this
+  system.stateVersion = "23.05";
 }

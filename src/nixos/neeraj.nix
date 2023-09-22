@@ -8,50 +8,20 @@ let
   sudo nix-channel --update
   */
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-  
-  # Qtile specific packages
-  qtileApps = with pkgs; [
-    alacritty
-    blueman
-    dmenu
-    dunst
-    gnome.gnome-keyring
-    libnotify
-    libsecret
-    nitrogen
-    xfce.thunar
-  ];
 
-  # Gnome specific packages
-  gnomeApps = with pkgs; [
-    gnome.gnome-tweaks
-  ];
-
-  # XFCE Specific packages
-  xfceApps = with pkgs; with xfce; [
-    xfce4-pulseaudio-plugin
-  ];
-
-  # KDE Specific packages
-  kdeApps = with pkgs; with libsForQt5; [
-    plasma-browser-integration
-  ];
-
-  # Unstable apps
   unstableApps = with pkgs; with unstable; [
-    nodejs_20
+    brave
+    electron_25
     obsidian
     virt-manager
     virtualenv
     vlc
     vscode
+    xarchiver
     zoom-us
   ];
 
-  # Apps to be installed irrespective of desktop env
   commonStableApps = with pkgs; [
-    brave
-    firefox
     gh
     git
     gparted
@@ -66,15 +36,32 @@ let
     parted
     python3
     ventoy-full
+    xfce.thunar-archive-plugin
   ];
 
-  appendApps = apps: kdeApps ++ unstableApps ++  commonStableApps ++ apps;
+  wmTools = with pkgs; [
+    alacritty
+    dmenu
+    gnome.gnome-keyring
+    networkmanagerapplet
+    nitrogen
+    pasystray
+    picom
+    polkit_gnome
+    pulseaudioFull
+    rofi
+    vim
+    unzip
+  ];
+
+  appendAppList = apps: wmTools ++ unstableApps ++ commonStableApps ++ apps;
 
 in {
+  # User settings
   users.users.neeraj = {
     isNormalUser = true;
     description = "Neeraj";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; appendApps [];
+    packages = with pkgs; appendAppList [ ];
   };
 }
