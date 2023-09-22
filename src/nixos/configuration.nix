@@ -7,7 +7,6 @@
     ./neeraj.nix
   ];
 
-  # Bootloader
   boot = {
     blacklistedKernelModules = [ "snd_pcsp" ];
     kernelPackages = pkgs.linuxPackages_latest;
@@ -39,7 +38,6 @@
     ];
   };
 
-  # Networking
   networking = {
     firewall = {
       enable = true;
@@ -50,7 +48,6 @@
     networkmanager.enable = true;
   };
 
-  # Timezone and Locale
   time.timeZone = "Asia/Kolkata";
   i18n = {
     defaultLocale = "en_IN";
@@ -68,7 +65,8 @@
     };
   };
 
-  # X Server
+  sound.enable = true;
+
   services = {
     xserver = {
       layout = "us";
@@ -116,7 +114,6 @@
 
   environment.systemPackages = with pkgs; [ ];
 
-  # Essential programs and services
   programs = {
     thunar.enable = true;
     dconf.enable = true;
@@ -144,17 +141,11 @@
     };
   };
 
-  # Virtualisation
   virtualisation.libvirtd.enable = true;
   
-  # Bluetooth service
   hardware = {
     bluetooth.enable = true;
-    pulseaudio.enable = false;
   };
-
-  # Sound
-  sound.enable = true;
 
   # Don't touch this
   system.stateVersion = "23.05";
