@@ -77,7 +77,7 @@
         enable = true;
         extraPackages = with pkgs; [
           i3status
-      ];
+        ];
       };
       desktopManager = {
         xterm.enable = false;
