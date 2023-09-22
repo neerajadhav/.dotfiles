@@ -23,7 +23,6 @@ let
 
   commonStableApps = with pkgs; [
     gh
-    git
     gparted
     htop
     hugo
@@ -42,6 +41,7 @@ let
   wmTools = with pkgs; [
     alacritty
     dmenu
+    git
     gnome.gnome-keyring
     networkmanagerapplet
     nitrogen
