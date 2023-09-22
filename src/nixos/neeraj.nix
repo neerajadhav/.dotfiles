@@ -51,6 +51,7 @@ let
     pulseaudioFull
     rofi
     vim
+    unrar
     unzip
   ];
 

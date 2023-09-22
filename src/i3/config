@@ -224,7 +224,7 @@ default_border pixel 3
 default_floating_border pixel 3
 gaps inner 10
 
-for_window [title="Application Finder"] floating enable 
+for_window [title="Application Finder"] floating enable resize set 640 480
 for_window [title="Nitrogen"] floating enable resize set 640 480
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
