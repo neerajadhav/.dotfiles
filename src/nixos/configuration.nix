@@ -45,6 +45,7 @@ let
     polkit_gnome
     pulseaudioFull
     rofi
+    vim
     unzip
   ];
 
