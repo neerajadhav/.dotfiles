@@ -13,8 +13,26 @@
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     loader = {
-      systemd-boot.enable = true;
+      # systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        copyKernels = true;
+        # efiInstallAsRemovable = true;
+        efiSupport = true;
+        # fsIdentifier = "label";
+        # splashImage = ./backgrounds/grub-nixos-3.png;
+        splashMode = "stretch";
+        devices = [ "nodev" ];
+        extraEntries = ''
+          menuentry "Reboot" {
+            reboot
+          }
+          menuentry "Poweroff" {
+            halt
+          }
+        '';
+      };
     };
     supportedFilesystems = [
       "ntfs"
