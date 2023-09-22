@@ -22,7 +22,7 @@
         efiSupport = true;
         # fsIdentifier = "label";
         # splashImage = ./backgrounds/grub-nixos-3.png;
-        splashMode = "stretch";
+        # splashMode = "stretch";
         devices = [ "nodev" ];
         extraEntries = ''
           menuentry "Reboot" {
