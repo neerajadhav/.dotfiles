@@ -52,6 +52,7 @@ let
     polkit_gnome
     pulseaudioFull
     rofi
+    tmux
     vim
     unrar
     unzip
