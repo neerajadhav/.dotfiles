@@ -31,6 +31,7 @@ let
     micro
     motrix
     neofetch
+    nomacs
     onlyoffice-bin
     parted
     python3
