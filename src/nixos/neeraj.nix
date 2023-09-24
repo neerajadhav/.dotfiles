@@ -55,6 +55,7 @@ let
     picom
     polkit_gnome
     pulseaudioFull
+    pywal
     rofi
     tmux
     vim
