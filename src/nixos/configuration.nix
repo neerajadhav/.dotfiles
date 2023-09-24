@@ -147,6 +147,13 @@
     bluetooth.enable = true;
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 3d";
+  };
+
+
   # Don't touch this
   system.stateVersion = "23.05";
 }

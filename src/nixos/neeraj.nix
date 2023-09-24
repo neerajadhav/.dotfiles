@@ -22,7 +22,9 @@ let
   ];
 
   commonStableApps = with pkgs; [
+    bottles
     gh
+    gimp
     gparted
     htop
     hugo
@@ -36,7 +38,9 @@ let
     parted
     python3
     ventoy-full
+    wineWowPackages.stable
     xfce.thunar-archive-plugin
+    xfce.xfce4-volumed-pulse
   ];
 
   wmTools = with pkgs; [
