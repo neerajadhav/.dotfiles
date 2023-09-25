@@ -53,7 +53,6 @@ let
     bc
     calc
     dmenu
-    feh
     git
     gnome.gnome-keyring
     killall
