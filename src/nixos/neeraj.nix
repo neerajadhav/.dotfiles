@@ -21,8 +21,14 @@ let
     zoom-us
   ];
 
+  gamingApps = with pkgs; [
+    # wineWowPackages.stable
+    # lutris
+    # bottles
+    # steam
+  ];
+
   commonStableApps = with pkgs; [
-    bottles
     gh
     gimp
     gparted
@@ -38,7 +44,6 @@ let
     parted
     python3
     ventoy-full
-    wineWowPackages.stable
     xfce.thunar-archive-plugin
     xfce.xfce4-volumed-pulse
   ];
@@ -53,7 +58,6 @@ let
     gnome.gnome-keyring
     killall
     kitty
-    nerdfonts
     networkmanagerapplet
     nitrogen
     pasystray
