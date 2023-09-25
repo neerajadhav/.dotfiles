@@ -25,9 +25,9 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
-command=$SCRIPT_DIR/$BLOCK_NAME
+command=$SCRIPT_DIR/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
-markup=none
+markup=pango
 
 # Volume indicator
 #
@@ -37,24 +37,24 @@ markup=none
 
 [volume]
 #label=♪
-label=VOL
+label=VOL 
 interval=once
 signal=10
-#STEP=5%
+STEP=5%
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label=MEM 
 separator=false
 interval=30
 
-[memory]
-label=SWAP
-instance=swap
-separator=false
-interval=30
+# [memory]
+# label=SWAP
+# instance=swap
+# separator=false
+# interval=30
 
 # Disk usage
 #
@@ -62,7 +62,7 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=HOME
+label=HOME 
 #DIR=/mnt/data
 interval=30
 
@@ -73,7 +73,7 @@ interval=30
 [iface]
 #IFACE=wlan0
 color=#00FF00
-interval=10
+interval=1
 separator=false
 
 [wifi]
@@ -84,7 +84,7 @@ separator=false
 
 [bandwidth]
 #INTERFACE=eth0
-interval=5
+interval=1
 
 # CPU usage
 #
@@ -104,14 +104,14 @@ interval=10
 #
 # The battery instance defaults to 0.
 [battery]
-label=BAT
+label=BAT 
 #label=⚡
 interval=30
 
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%a %d-%m-%Y %I:%M %p'
 interval=5
 
 # Generic media player support
@@ -146,14 +146,14 @@ interval=5
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#KEY=CAPS
-#markup=pango
-#interval=once
-#signal=11
+[keyindicator]
+KEY=CAPS
+markup=pango
+interval=once
+signal=11
 
-#[keyindicator]
-#KEY=NUM
-#markup=pango
-#interval=once
-#signal=11
+[keyindicator]
+KEY=NUM
+markup=pango
+interval=once
+signal=11

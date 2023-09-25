@@ -44,6 +44,7 @@ let
   ];
 
   wmTools = with pkgs; [
+    acpi
     bc
     calc
     dmenu
