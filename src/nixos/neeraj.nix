@@ -44,16 +44,21 @@ let
   ];
 
   wmTools = with pkgs; [
-    alacritty
+    bc
+    calc
     dmenu
+    feh
     git
     gnome.gnome-keyring
+    killall
+    kitty
     nerdfonts
     networkmanagerapplet
     nitrogen
     pasystray
     picom
     polkit_gnome
+    polybar
     pulseaudioFull
     pywal
     rofi

@@ -50,7 +50,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id "alacritty -o font.size=8"
+bindsym $mod+Return exec --no-startup-id "kitty"
 # Open file manager
 bindsym $mod+Shift+f exec --no-startup-id "thunar"
 # Open browser
@@ -191,28 +191,72 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# exec_always --no-startup-id nitrogen --set-zoom-fill --random ~/Pictures/Wallpapers/
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background       $bg
+
+# Set the wallpaper
 exec_always --no-startup-id nitrogen --restore
 
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# autostart scripts
+exec_always --no-startup-id ~/.config/i3/autostart.sh
+
+# exec_always --no-startup-id ~/.config/polybar/launch.sh --shapes
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+set_from_resource $col0 i3wm.color0
+set_from_resource $col1 i3wm.color1 
+set_from_resource $col2 i3wm.color2
+set_from_resource $col3 i3wm.color3
+set_from_resource $col4 i3wm.color4
+set_from_resource $col5 i3wm.color5
+set_from_resource $col6 i3wm.color6
+set_from_resource $col7 i3wm.color7
+set_from_resource $col8 i3wm.color8
+set_from_resource $col9 i3wm.color9
+set_from_resource $col10 i3wm.color10
+set_from_resource $col11 i3wm.color11
+set_from_resource $col12 i3wm.color12
+set_from_resource $col13 i3wm.color13
+set_from_resource $col14 i3wm.color14
+set_from_resource $col15 i3wm.color15
+
 bar {
-        status_command i3status
+        status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
         position top
         font pango:DejaVu Sans Mono 10
         separator_symbol " "
+        # colors {
+        #         background #000000
+        #         statusline #ffffff
+        #         separator #ffffff
+        #         focused_workspace  #4c7899 #2B5489 #ffffff
+        #         active_workspace   #333333 #5f676a #ffffff
+        #         inactive_workspace #192331 #111111 #888888
+        #         urgent_workspace   #D32F2F #900000 #ffffff
+        #         binding_mode       #D32F2F #900000 #ffffff
+        # }
         colors {
-                background #222333
-                statusline #ffffff
-                separator #ffffff
-
-                focused_workspace  #4c7899 #2B5489 #ffffff
-                active_workspace   #333333 #5f676a #ffffff
-                inactive_workspace #192331 #111111 #888888
-                urgent_workspace   #D32F2F #900000 #ffffff
-                binding_mode       #D32F2F #900000 #ffffff
+                background $col0
+                statusline $fg
+                separator $fg
+                focused_workspace  $col7 $col7 $col0
+                inactive_workspace $col10 $col10 $col0
+                urgent_workspace   #D32F2F #900000 $col15
+                binding_mode       #D32F2F #900000 $col15
         }
         padding 3px 0
         tray_output primary
@@ -221,13 +265,13 @@ bar {
 }
 
 # for_window [all] title_window_icon on
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 0
+default_floating_border pixel 0
 gaps inner 10
 
 for_window [title="Application Finder"] floating enable resize set 640 480
-for_window [title="Nitrogen"] floating enable resize set 640 480
+for_window [class="Nitrogen"] floating enable resize set 640 480
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
-for_window [title="Thunar"] move to workspace $ws3
+for_window [class="Thunar"] move to workspace $ws3
 for_window [title="Virtual Machine Manager"] move to workspace $ws4

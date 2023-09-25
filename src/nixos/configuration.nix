@@ -77,6 +77,7 @@
         enable = true;
         extraPackages = with pkgs; [
           i3status
+          i3blocks
         ];
       };
       desktopManager = {
