@@ -146,14 +146,14 @@ interval=5
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-[keyindicator]
-KEY=CAPS
-markup=pango
-interval=once
-signal=11
+# [keyindicator]
+# KEY=CAPS
+# markup=pango
+# interval=once
+# signal=11
 
-[keyindicator]
-KEY=NUM
-markup=pango
-interval=once
-signal=11
+# [keyindicator]
+# KEY=NUM
+# markup=pango
+# interval=once
+# signal=11
