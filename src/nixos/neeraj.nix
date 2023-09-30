@@ -49,9 +49,9 @@ let
   ];
 
   wmTools = with pkgs; [
-    acpi
-    bc
-    calc
+    # acpi
+    # bc
+    # calc
     dmenu
     git
     gnome.gnome-keyring
