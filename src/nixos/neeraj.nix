@@ -44,7 +44,6 @@ let
     onlyoffice-bin
     parted
     python3
-    unetbootin
     ventoy-full
     xfce.thunar-archive-plugin
     xfce.xfce4-volumed-pulse
