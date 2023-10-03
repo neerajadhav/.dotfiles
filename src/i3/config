@@ -197,6 +197,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 # Set the wallpaper
 exec_always --no-startup-id nitrogen --restore
+# exec_always --no-startup-id nitrogen --random --set-zoom-fill ~/Pictures/backgrounds
 
 # autostart scripts
 exec_always --no-startup-id ~/.config/i3/autostart.sh
