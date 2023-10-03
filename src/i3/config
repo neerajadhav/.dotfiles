@@ -251,7 +251,7 @@ bar {
         padding 3px 0
         tray_output primary
         tray_padding 5px
-        workspace_min_width 50
+        workspace_min_width 54
 }
 
 # for_window [all] title_window_icon on
