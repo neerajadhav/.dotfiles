@@ -61,7 +61,7 @@ disk "/" {
 memory {
         format = "<span bgcolor='#81C784' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#81C784'> %used </span>"
         threshold_degraded = "10%"
-        format_degraded = "MEMORY: %free"
+        format_degraded = "<span bgcolor='#D32F2F' foreground='white' size='large'>   </span><span bgcolor='#111111' color='#D32F2F'> %free Free</span>"
 }
 
 cpu_temperature 0 {
