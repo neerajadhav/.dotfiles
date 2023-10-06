@@ -62,6 +62,7 @@ let
     networkmanagerapplet
     nitrogen
     pasystray
+    pciutils
     picom
     polkit_gnome
     polybar

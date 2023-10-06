@@ -54,7 +54,7 @@ wireless _first_ {
 }
 
 disk "/" {
-        format = "<span bgcolor='#4DB6AC' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#4DB6AC'> %avail </span>"
+        format = "<span bgcolor='#4DB6AC' foreground='black' size='large'>   </span><span bgcolor='#111111' color='#4DB6AC'> %avail Free </span>"
         prefix_type = custom
 }
 
