@@ -12,6 +12,7 @@ let
   unstableApps = with pkgs; with unstable; [
     brave
     electron_25
+    inkscape
     nodejs_20
     obsidian
     virt-manager
