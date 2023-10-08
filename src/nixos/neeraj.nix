@@ -43,7 +43,6 @@ let
     micro
     motrix
     neofetch
-    nomacs
     nvtop
     onlyoffice-bin
     parted
