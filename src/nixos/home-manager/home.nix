@@ -6,12 +6,9 @@
   home.stateVersion = "23.05";
 	
   home.packages = with pkgs; [
-    libcanberra
     brave
     electron_25
-    glaxnimate # requierd but kdenlive
     inkscape
-    libsForQt5.kdenlive
     nodejs_20
     obsidian
     virt-manager
