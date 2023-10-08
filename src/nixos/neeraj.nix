@@ -12,7 +12,9 @@ let
   unstableApps = with pkgs; with unstable; [
     brave
     electron_25
+    glaxnimate # requierd but kdenlive
     inkscape
+    libsForQt5.kdenlive
     nodejs_20
     obsidian
     virt-manager
@@ -42,6 +44,7 @@ let
     motrix
     neofetch
     nomacs
+    nvtop
     onlyoffice-bin
     parted
     python3
