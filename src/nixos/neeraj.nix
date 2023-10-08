@@ -25,13 +25,6 @@ let
     zoom-us
   ];
 
-  gamingApps = with pkgs; [
-    # wineWowPackages.stable
-    # lutris
-    # bottles
-    # steam
-  ];
-
   commonStableApps = with pkgs; [
     gh
     gimp
