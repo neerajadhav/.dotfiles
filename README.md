@@ -1,7 +1,7 @@
 > [!WARNING]  
 > The DotFiles Script is currently in development
 > and is not ready for use. If you would like to
-> contribute, please see the raise an issue or 
+> contribute, please raise an issue or 
 > submit a pull request.
 
 # DotFiles Setup Script
