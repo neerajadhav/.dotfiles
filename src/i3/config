@@ -266,6 +266,7 @@ gaps inner 10
 
 for_window [title="Application Finder"] floating enable resize set 640 480
 for_window [class="Nitrogen"] floating enable resize set 640 480
+for_window [class="Pavucontrol"] floating enable resize set 640 480
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
 for_window [class="Thunar"] move to workspace $ws3
