@@ -1,3 +1,9 @@
+> [!WARNING]  
+> The DotFiles Script is currently in development
+> and is not ready for use. If you would like to
+> contribute, please see the raise an issue or 
+> submit a pull request.
+
 # DotFiles Setup Script
 
 This script helps you manage your dotfiles by setting up a symbolic link for the `.profile` file and applying Nix configuration files from a predefined directory.
