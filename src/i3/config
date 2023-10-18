@@ -65,7 +65,7 @@ bindsym $mod+q kill
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-bindcode $mod+40 exec "rofi -show run"
+bindcode $mod+40 exec "rofi -show run -show-icons"
 # bindcode $mod+40 exec "rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/i3/rofi/launcher2.rasi"
 # bindcode $mod+40 exec "rofi -show drun -theme $HOME/.config/rofi/launchers/type-1/style-8.rasi"
 # There also is i3-dmenu-desktop which only displays applications shipping a 
@@ -281,4 +281,5 @@ for_window [class="Pavucontrol"] floating enable resize set 640 480
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
 for_window [class="Thunar"] move to workspace $ws3
+for_window [class="obsidian"] move to workspace $ws5
 for_window [title="Virtual Machine Manager"] move to workspace $ws4
