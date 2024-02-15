@@ -2,7 +2,7 @@
 > The DotFiles Setup Script is currently in development
 > and is not ready for use. If you would like to
 > contribute, please raise an issue or 
-> submit a pull request.
+> submut a pull request.
 
 # DotFiles Setup Script
 
