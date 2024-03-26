@@ -240,12 +240,13 @@ bar {
 for_window [title="Application Finder"] floating enable resize set 640 480
 for_window [class="Nitrogen"] floating enable resize set 640 480
 for_window [class="Pavucontrol"] floating enable resize set 640 480
+for_window [class="Lxappearance"] floating enable resize set 640 480
 for_window [title="Bluetooth"] floating enable resize set 640 480
 for_window [title="Brave"] move to workspace $ws1
 for_window [title="Code"] move to workspace $ws2
 for_window [class="Thunar"] move to workspace $ws3
-for_window [class="obsidian"] move to workspace $ws5
 for_window [title="Virtual Machine Manager"] move to workspace $ws4
+for_window [class="obsidian"] move to workspace $ws5
 
 # autostart scripts
 exec_always --no-startup-id ~/.config/i3/autostart.sh
