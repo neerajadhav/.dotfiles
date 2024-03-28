@@ -232,7 +232,7 @@ bar {
                 binding_mode       #D32F2F #900000 #ffffff
         }
         padding 3px 0
-        tray_output primary
+        tray_output eDP-1 # none|primary|<output>
         tray_padding 5px
         workspace_min_width 54
 }
