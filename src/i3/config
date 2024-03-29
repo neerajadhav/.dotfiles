@@ -45,6 +45,9 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# dmenu
+bindsym $mod+d exec ~/.config/i3/dmenu.sh
+
 # Open applications
 bindsym $mod+Return exec "alacritty -o font.size=8"
 bindsym $mod+shift+Return exec --no-startup-id "thunar"
