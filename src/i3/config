@@ -153,8 +153,8 @@ for_window [title="Virtual Machine Manager"] move to workspace $ws4
 for_window [class="obsidian"] move to workspace $ws5
 
 # Autostart scripts
-exec_always --no-startup-id ~/.config/i3/autostart.sh
 exec_always --no-startup-id "nitrogen --restore"
+exec_always --no-startup-id ~/.config/i3/autostart.sh
 
 # Window borders
 default_border pixel 0
