@@ -28,10 +28,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Key bindings
-set $up l
-set $down k
-set $left j
-set $right semicolon
+set $up Up
+set $down Down
+set $left Left
+set $right Right
 
 # Workspace bindings
 set $ws1 "1"
@@ -155,7 +155,9 @@ for_window [class="obsidian"] move to workspace $ws5
 # Autostart scripts
 exec_always --no-startup-id "nitrogen --restore"
 exec_always --no-startup-id ~/.config/i3/autostart.sh
-exec_always --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+exec --no-startup-id dbus-update-activation-environment --all
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Window borders
 default_border pixel 0
