@@ -50,6 +50,7 @@ set $ws10 "10"
 
 # dmenu
 bindsym $mod+d exec ~/.config/i3/dmenu.sh
+bindsym $mod+z exec jgmenu_run
 
 # Open applications
 bindsym $mod+Return exec --no-startup-id "alacritty -o font.size=8"
@@ -125,6 +126,7 @@ bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed 
 # Bar configuration
 bar {
         status_command i3status
+        bindsym button3 exec --no-startup-id jgmenu_run
         position bottom
         font pango:DejaVu Sans Mono 10
         separator_symbol ""
