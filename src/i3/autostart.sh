@@ -6,5 +6,3 @@ grep -Po "(?<=file=).+" ~/.config/nitrogen/bg-saved.cfg | while read -r wallpape
     wal -i "$wallpaper"
     betterlockscreen -u "$wallpaper"
 done
-
-autotiling -l 2 &
