@@ -126,7 +126,7 @@ battery 1 {
         format = "<span foreground='#DCE775' size='large'>%status</span><span color='#DCE775'> %percentage (%remaining) </span>"
         format_down = "No battery"
         status_chr = "⚡ "
-        status_bat = " "
+        status_bat = "  "
         status_unk = "? UNK"
         status_full = "󰂄 FULL"
         path = "/sys/class/power_supply/BAT%d/uevent"
