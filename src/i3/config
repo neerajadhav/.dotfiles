@@ -52,7 +52,7 @@ set $ws10 "10"
 bindsym $mod+d exec ~/.config/i3/dmenu.sh
 
 # Open applications
-bindsym $mod+Return exec "alacritty -o font.size=8"
+bindsym $mod+Return exec --no-startup-id "alacritty -o font.size=8"
 bindsym $mod+shift+Return exec --no-startup-id "thunar"
 bindsym $mod+b exec --no-startup-id "brave"
 
@@ -62,7 +62,7 @@ bindsym $mod+minus scratchpad show
 
 # Screenshots and Logout
 bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $mod+p exec ~/.config/i3/dmenu-logout.sh
+bindsym $mod+p exec --no-startup-id ~/.config/i3/dmenu-logout.sh
 
 # Window management
 bindsym $mod+q kill
@@ -120,7 +120,7 @@ bindsym $mod+r mode "resize"
 # Restart and Exit
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Bar configuration
 bar {
