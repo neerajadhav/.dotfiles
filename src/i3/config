@@ -155,7 +155,7 @@ for_window [class="obsidian"] move to workspace $ws5
 # Autostart scripts
 exec_always --no-startup-id "nitrogen --restore"
 exec_always --no-startup-id ~/.config/i3/autostart.sh
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+exec_always --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Window borders
 default_border pixel 0
