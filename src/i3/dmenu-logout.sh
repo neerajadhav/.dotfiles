@@ -34,31 +34,31 @@ logout() {
 [ -f "$HOME/.dmenurc" ] && . "$HOME/.dmenurc" || DMENU='dmenu -i'
 
 # Menu items
-items="logout
-poweroff
-reboot
-hibernate
-suspend"
+items="Logout
+Poweroff
+Reboot
+Hibernate
+Suspend"
 
 # Open menu
-selection=$(printf '%s' "$items" | $DMENU -i -l 10 -p 'i3wm' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15")
+selection=$(printf '%s' "$items" | $DMENU -i -l 10 -p 'Power Menu' -fn 'Ubuntu Mono:bold:pixelsize=15' -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15")
 
 case $selection in
-    logout)
+    Logout)
         logout
         ;;
-    poweroff)
+    Poweroff)
         logout
         systemctl poweroff
         ;;
-    reboot)
+    Reboot)
         logout
         systemctl reboot
         ;;
-    hibernate)
+    Hibernate)
         systemctl hibernate
         ;;
-    suspend)
+    Suspend)
         systemctl suspend
         ;;
 esac
