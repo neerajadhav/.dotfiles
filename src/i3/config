@@ -19,7 +19,9 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id autotiling -l 2 &
+exec_always --no-startup-id "nitrogen --restore"
+exec_always --no-startup-id ~/.config/i3/autostart.sh
+exec_always --no-startup-id autotiling -l 2 &
 
 # Volume Control
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -122,9 +124,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Bar configuration
 bar {
         status_command i3status
-        position top
+        position bottom
         font pango:DejaVu Sans Mono 10
-        separator_symbol " "
+        separator_symbol " / "
         colors {
                 background #000000
                 statusline #ffffff
@@ -153,10 +155,6 @@ for_window [class="Thunar"] move to workspace $ws3
 for_window [title="Virtual Machine Manager"] move to workspace $ws4
 for_window [class="obsidian"] move to workspace $ws5
 
-# Autostart scripts
-exec_always --no-startup-id "nitrogen --restore"
-exec_always --no-startup-id ~/.config/i3/autostart.sh
-
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 50 "brightnessctl set 50" "brightnessctl set 153"
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60 "betterlockscreen -l dim" ''
 exec --no-startup-id gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
@@ -166,4 +164,4 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Window borders
 default_border pixel 0
 default_floating_border pixel 3
-gaps inner 10
+gaps inner 5
