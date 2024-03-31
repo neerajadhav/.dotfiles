@@ -127,7 +127,7 @@ bar {
         status_command i3status
         position bottom
         font pango:DejaVu Sans Mono 10
-        separator_symbol " /"
+        separator_symbol ""
         colors {
                 background #000000
                 statusline #ffffff

@@ -103,18 +103,18 @@ wireless _first_ {
 }
 
 disk "/" {
-        format = "<span foreground='#4DB6AC' size='large'>  </span><span color='#4DB6AC'> %avail Free </span>"
+        format = "<span foreground='#4DB6AC' size='large'> </span><span color='#4DB6AC'> %avail Free </span>"
         prefix_type = custom
 }
 
 memory {
-        format = "<span foreground='#81C784' size='large'> 󰍛 </span><span color='#81C784'> %used </span>"
+        format = "<span foreground='#81C784' size='large'> 󰍛</span><span color='#81C784'> %used </span>"
         threshold_degraded = "10%"
         format_degraded = "<span bgcolor='#D32F2F' foreground='black' size='large'> 󰍛 </span><span color='#D32F2F'> %free Free</span>"
 }
 
 cpu_temperature 0 {
-        format = "<span foreground='#AED581' size='large'> 󰈸 </span><span> %degrees °C </span>"
+        format = "<span foreground='#AED581' size='large'> 󰈸</span><span> %degrees °C </span>"
         max_threshold = 50
 }
 
@@ -123,7 +123,7 @@ tztime localdate {
 }
 
 battery 1 {
-        format = "<span foreground='#DCE775' size='large'> %status </span><span color='#DCE775'> %percentage (%remaining) </span>"
+        format = "<span foreground='#DCE775' size='large'>%status</span><span color='#DCE775'> %percentage (%remaining) </span>"
         format_down = "No battery"
         status_chr = "⚡ "
         status_bat = " "
@@ -135,7 +135,7 @@ battery 1 {
 }
 
 tztime localtime {
-        format = "<span foreground='#FFD54F' size='large'>  </span><span color='#FFD54F'> %I:%M %p </span> "
+        format = "<span foreground='#FFD54F' size='large'> </span><span color='#FFD54F'> %I:%M %p </span> "
 }
 
 disk "/home" {
