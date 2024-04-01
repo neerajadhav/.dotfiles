@@ -127,7 +127,7 @@ bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed 
 bar {
         status_command i3status
         bindsym button3 exec --no-startup-id jgmenu_run
-        position bottom
+        position top #bottom
         font pango:DejaVu Sans Mono 10
         separator_symbol ""
         colors {
