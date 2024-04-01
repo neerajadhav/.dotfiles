@@ -63,7 +63,9 @@ bindsym $mod+minus scratchpad show
 
 # Screenshots and Logout
 bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $mod+p exec --no-startup-id ~/.config/i3/dmenu-logout.sh
+# bindsym $mod+p exec --no-startup-id ~/.config/i3/dmenu-logout.sh
+bindsym $mod+p exec --no-startup-id archlinux-logout
+
 
 # Window management
 bindsym $mod+q kill
@@ -116,6 +118,7 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 # Restart and Exit
