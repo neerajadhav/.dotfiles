@@ -162,8 +162,8 @@ for_window [class="Thunar"] move to workspace $ws3
 for_window [title="Virtual Machine Manager"] move to workspace $ws4
 for_window [class="obsidian"] move to workspace $ws5
 
-exec_always --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 5 "brightnessctl set 50" "brightnessctl set 153"
-exec_always --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 10 "betterlockscreen -l dimblur" ""
+exec_always --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 50 "brightnessctl set 50" "brightnessctl set 153"
+exec_always --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60 "betterlockscreen -l dimblur" ""
 exec --no-startup-id gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 exec --no-startup-id dbus-update-activation-environment --all
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
