@@ -50,7 +50,7 @@ set $ws10 "10"
 
 # dmenu
 bindsym $mod+z exec --no-startup-id ~/.config/i3/dmenu.sh
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id ~/.config/i3/launcher/launcher.sh
 
 # Open applications
 bindsym $mod+Return exec --no-startup-id "alacritty -o font.size=8"
