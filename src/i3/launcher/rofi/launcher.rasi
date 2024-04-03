@@ -37,7 +37,7 @@ window {
     location:                       northwest;
     x-offset:                        0%;
     y-offset:                        0%;
-    padding:                         30px;
+    padding:                         10px 50px;
 }
 
 
