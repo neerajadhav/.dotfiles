@@ -32,9 +32,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Brightness Control XF86MonBrightnessUp
 
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10 && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10 && $refresh_i3status && notify-send --expire-time=50 "$(brightnessctl)"
 
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10- && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10- && $refresh_i3status && notify-send --expire-time=50 "$(brightnessctl)"
 
 # Key bindings
 set $up Up
