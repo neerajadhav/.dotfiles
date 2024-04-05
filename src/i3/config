@@ -168,7 +168,7 @@ for_window [title="Virtual Machine Manager"] move to workspace $ws4
 for_window [class="obsidian"] move to workspace $ws5
 
 exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 50 "brightnessctl set 50" "brightnessctl set 153" &
-exec --no-startup-id xautolock -time 3 -locker 'systemctl suspend' -notify 80 -notifier 'betterlockscreen -l dimblur | xset dpms force off' &
+exec --no-startup-id xautolock -time 2 -locker 'systemctl suspend' -notify 60 -notifier 'betterlockscreen -l dimblur | xset dpms force off' &
 exec --no-startup-id gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 exec --no-startup-id dbus-update-activation-environment --all
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
